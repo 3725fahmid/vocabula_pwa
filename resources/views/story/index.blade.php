@@ -15,49 +15,47 @@
         </div>
     </div>
 
-    <!-- English Story -->
-    <div class="card border-0 shadow-sm rounded-4 mb-4">
-        <div class="card-body px-4 px-md-5 py-4">
+    <!-- Story Card With Language Toggle -->
+        <div class="card border-0 shadow-sm rounded-4 mb-5">
+            <div class="card-body px-4 px-md-5 py-4">
 
-            <div class="mb-3">
-                <span class="badge bg-primary-subtle text-primary fw-semibold">
-                    Story #{{ $story['story_id'] }}
-                </span>
+                <!-- Header -->
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <span class="badge bg-primary-subtle text-primary fw-semibold">
+                        Story #{{ $story['story_id'] }}
+                    </span>
+
+                    <!-- Toggle Buttons -->
+                    <div class="btn-group btn-group-md" role="group">
+                        <button class="btn btn-primary" id="btnEnglish">
+                            English
+                        </button>
+                        <button class="btn btn-outline-primary" id="btnBangla">
+                            বাংলা
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ENGLISH VERSION -->
+                <div id="englishStory" class="story-content fs-5 lh-lg text-dark">
+                    @foreach(explode("\n\n", $story['english'] ?? '') as $paragraph)
+                        <p class="mb-4">
+                            {{ $paragraph }}
+                        </p>
+                    @endforeach
+                </div>
+
+                <!-- BANGLA VERSION -->
+                <div id="banglaStory" class="story-content fs-5 lh-lg text-muted d-none">
+                    @foreach(explode("\n\n", $story['bangla'] ?? '') as $paragraph)
+                        <p class="mb-4">
+                            {{ $paragraph }}
+                        </p>
+                    @endforeach
+                </div>
+
             </div>
-
-            <h4 class="fw-bold fs-3 mb-4">
-                English Version
-            </h4>
-
-            <div class="fs-5 lh-lg text-dark">
-                @foreach(explode("\n\n", $story['english'] ?? '') as $paragraph)
-                    <p class="mb-4">
-                        {{ $paragraph }}
-                    </p>
-                @endforeach
-            </div>
-
         </div>
-    </div>
-
-    <!-- Bangla Story -->
-    <div class="card border-0 shadow-sm rounded-4 mb-5">
-        <div class="card-body px-4 px-md-5 py-4">
-
-            <h4 class="fw-bold fs-3 mb-4">
-                বাংলা সংস্করণ
-            </h4>
-
-            <div class="fs-5 lh-lg text-muted">
-                @foreach(explode("\n\n", $story['bangla'] ?? '') as $paragraph)
-                    <p class="mb-4">
-                        {{ $paragraph }}
-                    </p>
-                @endforeach
-            </div>
-
-        </div>
-    </div>
 
     <!-- Vocabulary Section -->
     <div class="card border-0 shadow-sm rounded-4">
@@ -110,12 +108,38 @@
 
 @section('scripts')
 <script>
+    const btnEnglish = document.getElementById('btnEnglish');
+    const btnBangla  = document.getElementById('btnBangla');
+
+    const englishStory = document.getElementById('englishStory');
+    const banglaStory  = document.getElementById('banglaStory');
+
+    btnEnglish.addEventListener('click', () => {
+        englishStory.classList.remove('d-none');
+        banglaStory.classList.add('d-none');
+
+        btnEnglish.classList.add('btn-primary');
+        btnEnglish.classList.remove('btn-outline-primary');
+
+        btnBangla.classList.add('btn-outline-primary');
+        btnBangla.classList.remove('btn-primary');
+    });
+
+    btnBangla.addEventListener('click', () => {
+        banglaStory.classList.remove('d-none');
+        englishStory.classList.add('d-none');
+
+        btnBangla.classList.add('btn-primary');
+        btnBangla.classList.remove('btn-outline-primary');
+
+        btnEnglish.classList.add('btn-outline-primary');
+        btnEnglish.classList.remove('btn-primary');
+    });
+
+    // Flip cards (unchanged)
     document.querySelectorAll('.scene-card').forEach(card => {
         card.addEventListener('click', function (e) {
-
-            // Prevent flip when clicking button or link
             if (e.target.closest('a, button')) return;
-
             this.classList.toggle('is-flipped');
         });
     });
