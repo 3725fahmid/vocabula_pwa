@@ -26,8 +26,8 @@
 
                 <!-- Header -->
                 <div class="d-flex justify-content-between align-items-center mb-4">
-                    <span class="badge bg-primary-subtle text-primary fw-semibold">
-                        Story #{{ $story['story_id'] }}
+                    <span class="text-dark fw-bold">
+                        {{ $story['story_id'] }}: {{ $story['title'] }}
                     </span>
 
                     <!-- Toggle Buttons -->
