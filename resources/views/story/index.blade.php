@@ -142,8 +142,9 @@
                                 </div> --}}
 
                                 <p class="w-100">
-                                    <a class="btn btn-primary custom-collapse-icon w-100" data-bs-toggle="collapse" href="#collapse{{ $item['id'] }}" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                        <i class="ri  ri-add-line"></i>
+                                    <a class="btn btn-dark custom-collapse-icon w-100 d-flex justify-content-between" data-bs-toggle="collapse" href="#collapse{{ $item['id'] }}" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                        <span class="d-block">See more</span>
+                                        <i class="ri ri-add-line d-block"></i>
                                     </a>
                                 </p>
                                 <div class="collapse" id="collapse{{ $item['id'] }}">
