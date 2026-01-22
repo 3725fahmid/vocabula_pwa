@@ -101,7 +101,7 @@
 
 
     <!-- Vocabulary Section -->
-    <div class="card border-0 shadow-sm rounded-4">
+    {{-- <div class="card border-0 shadow-sm rounded-4">
         <div class="card-body px-4 py-4">
 
             <h5 class="fw-bold mb-4">
@@ -142,7 +142,7 @@
             </div>
 
         </div>
-    </div>
+    </div> --}}
 
 </div>
 
@@ -161,7 +161,6 @@
                 loop: true,
                 margin: 10,
                 responsiveClass: true,
-                nav:false,
                 responsive: {
                   0: {
                     items: 1,
