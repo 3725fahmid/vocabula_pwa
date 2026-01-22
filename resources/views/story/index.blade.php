@@ -91,7 +91,7 @@
     
                                     </div>
                                 </div>
-                                <div class="accordion" id="accordionExample">
+                                {{-- <div class="accordion" id="accordionExample">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header">
                                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panel{{ $item['id'] }}" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
@@ -139,7 +139,54 @@
                                         </div>
                                         </div>
                                     </div>
+                                </div> --}}
+
+                                <p class="w-100">
+                                    <a class="btn btn-primary custom-collapse-icon w-100" data-bs-toggle="collapse" href="#collapse{{ $item['id'] }}" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                        <i class="ri  ri-add-line"></i>
+                                    </a>
+                                </p>
+                                <div class="collapse" id="collapse{{ $item['id'] }}">
+                                    <div class="card">
+                                                <div class="card-body">
+                                                    <h5 class="fw-semibold mb-3">Synonyms</h5>
+                                                    @foreach(explode(',', $item['synonyms']) as $syn)
+                                                        <span class="badge rounded-pill bg-info bg-opacity-10 text-info border border-info px-3 py-2 mb-1 fw-bold" 
+                                                                style="font-size: 1rem; letter-spacing: 0.5px;">
+                                                            {{ trim($syn) }}
+                                                        </span>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <h5 class="fw-semibold mb-3">Antonyms</h5>
+                                                    @foreach(explode(',', $item['antonyms']) as $syn)
+                                                        <span class="badge rounded-pill bg-info bg-opacity-10 text-info border border-info px-3 py-2 mb-1 fw-bold" 
+                                                                style="font-size: 1rem; letter-spacing: 0.5px;">
+                                                            {{ trim($syn) }}
+                                                        </span>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <h5 class="fw-semibold mb-2">Tactic / Memory Tip</h5>
+                                                    {{ $item['tactic'] }}
+                                                </div>
+                                            </div>
+
+                                            <div class="card">
+                                                <div class="card-body rounded-4">
+                                                    <h5 class="fw-semibold mb-2">Example</h5>
+                                                    {{ $item['example'] }}
+                                                </div>
+                                            </div>
                                 </div>
+
+
+
                             </div> 
                             @endforeach                   
                         </div>
@@ -277,6 +324,14 @@
         card.addEventListener('click', function (e) {
             if (e.target.closest('a, button')) return;
             this.classList.toggle('is-flipped');
+        });
+    });
+
+    document.querySelectorAll('.custom-collapse-icon').forEach(btn => {
+        btn.addEventListener('click', function () {
+            const icon = this.querySelector('i');
+            icon.classList.toggle('ri-add-line');
+            icon.classList.toggle('ri-subtract-line');
         });
     });
     
