@@ -2,6 +2,11 @@
 
 @section('title', 'Story')
 
+@section('cssLinks')
+<link rel="stylesheet" href="{{ asset('assets/libs/owlcarousel/owl.carousel.min.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/libs/owlcarousel/owl.theme.default.min.css') }}">
+@endsection
+
 @section('admin')
 
 <div class="page-content">
@@ -57,6 +62,44 @@
             </div>
         </div>
 
+        <div class="card border-0 shadow-sm rounded-4">
+            <div class="card-body px-4 py-4">
+
+                <h5 class="fw-bold mb-4">
+                    Vocabulary from this story
+                </h5>
+
+                <div class="row g-3">
+                    <div class="col-12">
+                        <div class="owl-carousel owl-theme">
+                            @foreach($words as $item)
+                            <div class="item">
+                                <!-- YOUR FLIP CARD (UNCHANGED) -->
+                                <div class="scene scene--card">
+                                    <div class="scene-card"
+                                            data-bs-toggle="tooltip"
+                                            data-bs-placement="top"
+                                            title="Click card to flip">
+    
+                                        <div class="card__face card__face--front">
+                                            {{ $item['word'] }}
+                                        </div>
+    
+                                        <div class="card__face card__face--back">
+                                            {{ $item['wordmeaning'] }}
+                                        </div>
+    
+                                    </div>
+                                </div>
+                            </div> 
+                            @endforeach                   
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     <!-- Vocabulary Section -->
     <div class="card border-0 shadow-sm rounded-4">
         <div class="card-body px-4 py-4">
@@ -107,7 +150,38 @@
 
 
 @section('scripts')
+<script src="{{ asset('assets/libs/owlcarousel/jquery.min.js') }}"></script>
+<script src="{{ asset('assets/libs/owlcarousel/owl.carousel.js') }}"></script>
+
+
 <script>
+
+    $(document).ready(function() {
+              $('.owl-carousel').owlCarousel({
+                loop: true,
+                margin: 10,
+                responsiveClass: true,
+                nav:false,
+                responsive: {
+                  0: {
+                    items: 1,
+                    nav: false,
+                  },
+                  600: {
+                    items: 3,
+                    nav: false
+                  },
+                  1000: {
+                    items: 4,
+                    nav: false,
+                    loop: false,
+                    margin: 20
+                  }
+                }
+              })
+            })
+
+
     const btnEnglish = document.getElementById('btnEnglish');
     const btnBangla  = document.getElementById('btnBangla');
 
@@ -143,5 +217,6 @@
             this.classList.toggle('is-flipped');
         });
     });
+    
 </script>
 @endsection
