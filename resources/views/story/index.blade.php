@@ -91,6 +91,55 @@
     
                                     </div>
                                 </div>
+                                <div class="accordion" id="accordionExample">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panel{{ $item['id'] }}" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                                            See more
+                                        </button>
+                                        </h2>
+                                        <div id="panel{{ $item['id'] }}" class="accordion-collapse collapse">
+                                        <div class="accordion-body">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <h5 class="fw-semibold mb-3">Synonyms</h5>
+                                                    @foreach(explode(',', $item['synonyms']) as $syn)
+                                                        <span class="badge rounded-pill bg-info bg-opacity-10 text-info border border-info px-3 py-2 mb-1 fw-bold" 
+                                                                style="font-size: 1rem; letter-spacing: 0.5px;">
+                                                            {{ trim($syn) }}
+                                                        </span>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <h5 class="fw-semibold mb-3">Antonyms</h5>
+                                                    @foreach(explode(',', $item['antonyms']) as $syn)
+                                                        <span class="badge rounded-pill bg-info bg-opacity-10 text-info border border-info px-3 py-2 mb-1 fw-bold" 
+                                                                style="font-size: 1rem; letter-spacing: 0.5px;">
+                                                            {{ trim($syn) }}
+                                                        </span>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <h5 class="fw-semibold mb-2">Tactic / Memory Tip</h5>
+                                                    {{ $item['tactic'] }}
+                                                </div>
+                                            </div>
+
+                                            <div class="card">
+                                                <div class="card-body rounded-4">
+                                                    <h5 class="fw-semibold mb-2">Example</h5>
+                                                    {{ $item['example'] }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div> 
                             @endforeach                   
                         </div>
@@ -99,6 +148,16 @@
             </div>
         </div>
 
+
+        {{-- "id" => "6"
+      "story_id" => "2"
+      "word" => "Wisdom"
+      "easy_spelling" => "Wiz-dum"
+      "wordmeaning" => "Ability to make good decisions"
+      "synonyms" => "Knowledge, Insight"
+      "antonyms" => "Ignorance"
+      "tactic" => "Think of elders"
+      "example" => "Wisdom comes with age." --}}
 
     <!-- Vocabulary Section -->
     {{-- <div class="card border-0 shadow-sm rounded-4">
@@ -167,13 +226,17 @@
                     nav: false,
                   },
                   600: {
-                    items: 3,
+                    items: 2,
                     nav: false
                   },
                   1000: {
+                    items: 3,
+                    nav: false,
+                    margin: 20
+                  },
+                  1400: {
                     items: 4,
                     nav: false,
-                    loop: false,
                     margin: 20
                   }
                 }
