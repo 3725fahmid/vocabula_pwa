@@ -30,19 +30,29 @@
     @endphp
 
     @foreach($shuffledWords as $index => $item)
+    {{-- 
+        Data safety check:
+        Do not render this question if `word` is missing or empty,
+        otherwise users will see a blank question title.
+    --}}
+    @continue(empty(trim($item['word'])))
 
         @php
-            // Generate 4 options for this question
-            $options = $words->pluck('wordmeaning')->shuffle()->take(4);
+            // 1. Take 3 WRONG answers (excluding correct one)
+            $options = $words->pluck('wordmeaning')
+                            ->filter(fn($m) => trim($m) !== '')
+                            ->where(fn($m) => $m !== $item['wordmeaning'])
+                            ->shuffle()
+                            ->take(3)
+                            ->values();
 
-            // Ensure the correct answer is included
-            if (!$options->contains($item['wordmeaning'])) {
-                $options[random_int(0, 3)] = $item['wordmeaning'];
-            }
+            // 2. Add the CORRECT answer
+            $options->push($item['wordmeaning']);
 
-            // Shuffle options again
-            $options = $options->shuffle();
+            // 3. Final shuffle
+            $options = $options->shuffle()->values();
         @endphp
+
 
         <!-- QUESTION -->
         <div class="card border-0 shadow-sm rounded-4 mb-4 question-card"
