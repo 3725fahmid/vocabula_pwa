@@ -181,9 +181,11 @@ class StoryController extends Controller
 
     public function show(Request $request, $id)
     {
-        // 🔥 Cached Excel data
+        /* ------------------------------------------
+        1️⃣ CACHE STORY DATA
+        ------------------------------------------ */
         $storyData = Cache::remember('story_excel_data', 3600, function () {
-            $collections = Excel::toCollection(
+            return Excel::toCollection(
                 new class implements WithHeadingRow {
                     public function headingRow(): int
                     {
@@ -191,18 +193,14 @@ class StoryController extends Controller
                     }
                 },
                 public_path('storyassets/story.xlsx')
-            );
-
-            return $collections->first()->map(
-                fn($row) =>
-                array_map('trim', $row->toArray())
-            );
+            )->first()->map(fn($row) => array_map('trim', $row->toArray()));
         });
 
-
-
+        /* ------------------------------------------
+        2️⃣ CACHE WORD DATA
+        ------------------------------------------ */
         $wordData = Cache::remember('story_word_excel_data', 3600, function () {
-            $collections = Excel::toCollection(
+            return Excel::toCollection(
                 new class implements WithHeadingRow {
                     public function headingRow(): int
                     {
@@ -210,46 +208,81 @@ class StoryController extends Controller
                     }
                 },
                 public_path('storyassets/story_words.xlsx')
-            );
-
-            return $collections->first()->map(
-                fn($row) =>
-                array_map('trim', $row->toArray())
-            );
+            )->first()->map(fn($row) => array_map('trim', $row->toArray()));
         });
 
-        // Categories for this story
-        $categories = $storyData
-            ->where('story_id', $id)
+        /* ------------------------------------------
+        3️⃣ FILTER BY STORY ID FIRST (CRITICAL)
+        ------------------------------------------ */
+        $storyById = $storyData->where('story_id', $id);
+
+        if ($storyById->isEmpty()) {
+            abort(404);
+        }
+
+        /* ------------------------------------------
+        4️⃣ GET CATEGORIES ONLY FOR THIS STORY
+            - Remove null / empty
+        ------------------------------------------ */
+        $categories = $storyById
             ->pluck('category')
+            ->filter(fn($c) => !empty($c))
             ->unique()
             ->values();
 
-        $category = $request->get('category', $categories->first());
+        /* ------------------------------------------
+        5️⃣ SELECT CATEGORY (SAFE FALLBACK)
+        ------------------------------------------ */
+        $category = $request->get('category');
 
-        // Story by category
-        $story = $storyData
-            ->where('story_id', $id)
-            ->where('category', $category)
-            ->first();
+        if ($categories->isNotEmpty()) {
+            $category = $category ?? $categories->first();
+        } else {
+            $category = null;
+        }
 
-        // Words (unchanged)
-        $words = $wordData->where('story_id', $id);
-        // dd($words);
+        /* ------------------------------------------
+        6️⃣ GET STORY ROW
+            - Works even if no category exists
+        ------------------------------------------ */
+        $story = $category
+            ? $storyById->where('category', $category)->first()
+            : $storyById->first();
 
         if (!$story) {
             abort(404);
         }
 
-        $language = $request->get('lang', 'en'); // default English
+        /* ------------------------------------------
+        7️⃣ WORDS FOR THIS STORY ONLY
+        ------------------------------------------ */
+        $words = $wordData->where('story_id', $id);
 
-        // AJAX response
+        /* ------------------------------------------
+        8️⃣ LANGUAGE STATE
+        ------------------------------------------ */
+        $language = $request->get('lang', 'en');
+
+        /* ------------------------------------------
+        9️⃣ AJAX RESPONSE (LANG TOGGLE)
+        ------------------------------------------ */
         if ($request->ajax()) {
             return view('story._story_content', compact('story', 'language'))->render();
         }
 
-        return view('story.index', compact('story', 'words', 'categories', 'category', 'language'));
+        /* ------------------------------------------
+        🔟 FULL PAGE RESPONSE
+        ------------------------------------------ */
+        return view('story.index', compact(
+            'story',
+            'words',
+            'categories',
+            'category',
+            'language'
+        ));
     }
+
+
 
 
     /**

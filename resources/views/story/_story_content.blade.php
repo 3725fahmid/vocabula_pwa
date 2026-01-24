@@ -1,4 +1,5 @@
-<div class="card border-0 shadow-sm rounded-4 mb-5">
+<div class="card border-0 shadow-sm rounded-4 mb-5" 
+            data-active-lang="{{ $language ?? 'en' }}">
             <div class="card-body px-4 px-md-5 py-4">
 
                 <!-- Header -->
@@ -19,19 +20,22 @@
                 </div>
 
                 <!-- ENGLISH VERSION -->
-                <div id="englishStory" class="story-content fs-5 lh-lg text-dark {{ $language === 'en' ? '' : 'd-none' }}">
+                <div id="englishStory" class="story-content fs-5 lh-lg text-dark">
                     @foreach(explode("\n\n", $story['english'] ?? '') as $paragraph)
-                        <p class="mb-4">{{ $paragraph }}</p>
+                        <p class="mb-4">
+                            {{ $paragraph }}
+                        </p>
                     @endforeach
                 </div>
 
                 <!-- BANGLA VERSION -->
-                <div id="banglaStory" class="story-content fs-5 lh-lg text-muted {{ $language === 'bn' ? '' : 'd-none' }}">
+                <div id="banglaStory" class="story-content fs-5 lh-lg text-muted d-none">
                     @foreach(explode("\n\n", $story['bangla'] ?? '') as $paragraph)
-                        <p class="mb-4">{{ $paragraph }}</p>
+                        <p class="mb-4">
+                            {{ $paragraph }}
+                        </p>
                     @endforeach
                 </div>
-
 
             </div>
         </div>

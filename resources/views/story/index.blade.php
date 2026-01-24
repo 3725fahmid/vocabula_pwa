@@ -55,7 +55,10 @@
 
 
     <div id="storyContent">
-        @include('story._story_content', ['story' => $story])
+       @include('story._story_content', [
+            'story' => $story,
+            'language' => $language
+        ])
     </div>
 
     <!-- Story Card With Language Toggle -->
@@ -385,6 +388,9 @@
         });
     });
 
+    document.addEventListener('DOMContentLoaded', function () {
+        bindLanguageToggle();
+    });
 
     document.getElementById('categoryFilter').addEventListener('change', function () {
     const lang = document.getElementById('btnBangla').classList.contains('btn-dark') ? 'bn' : 'en';
