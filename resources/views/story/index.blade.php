@@ -15,10 +15,45 @@
     <a href="{{ route('home') }}" class="btn btn-dark fw-semibold text-decoration-none mb-2">
         ← Back to Home
     </a>
-    <div class="card border-0 shadow-sm rounded-4 mb-4">
-        <div class="card-body py-2">
+    <div class="card border-0 shadow-sm rounded-4 mb-4 filter-card">
+        <div class="card-body px-4 py-3">
+            <div class="row align-items-center g-3">
+
+                <!-- Text -->
+                <div class="col-lg-6">
+                    <h6 class="mb-1 fw-semibold text-dark">
+                        Filter Stories
+                    </h6>
+                    <small class="text-muted">
+                        Choose your preferred story type
+                    </small>
+                </div>
+
+                <!-- Filter -->
+                <div class="col-lg-6">
+                    <form action="" method="GET" class="d-flex gap-2">
+                        
+                        <select name="category_filter"
+                                class="form-select rounded-pill px-4">
+                            <option value="">All Categories</option>
+                            {{-- @foreach($categories as $category)
+                                <option value="{{ $category->id }}">
+                                    {{ $category->name }}
+                                </option>
+                            @endforeach --}}
+                        </select>
+
+                        <button type="submit"
+                                class="btn btn-primary rounded-pill px-4 fw-semibold">
+                            Filter
+                        </button>
+                    </form>
+                </div>
+
+            </div>
         </div>
     </div>
+
 
     <!-- Story Card With Language Toggle -->
         <div class="card border-0 shadow-sm rounded-4 mb-5">
