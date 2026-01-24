@@ -34,7 +34,7 @@
                     <form action="" method="GET" class="d-flex gap-2">
                         
                         <select name="category_filter"
-                                class="form-select rounded-pill px-4">
+                                class="form-select rounded px-4">
                             <option value="">All Categories</option>
                             {{-- @foreach($categories as $category)
                                 <option value="{{ $category->id }}">
@@ -44,7 +44,7 @@
                         </select>
 
                         <button type="submit"
-                                class="btn btn-primary rounded-pill px-4 fw-semibold">
+                                class="btn btn-dark rounded px-4 fw-semibold">
                             Filter
                         </button>
                     </form>
@@ -67,10 +67,10 @@
 
                     <!-- Toggle Buttons -->
                     <div class="btn-group btn-group-md" role="group">
-                        <button class="btn btn-primary" id="btnEnglish">
+                        <button class="btn btn-dark" id="btnEnglish">
                             English
                         </button>
-                        <button class="btn btn-outline-primary" id="btnBangla">
+                        <button class="btn btn-outline-dark" id="btnBangla">
                             বাংলা
                         </button>
                     </div>
@@ -337,22 +337,22 @@
         englishStory.classList.remove('d-none');
         banglaStory.classList.add('d-none');
 
-        btnEnglish.classList.add('btn-primary');
-        btnEnglish.classList.remove('btn-outline-primary');
+        btnEnglish.classList.add('btn-dark');
+        btnEnglish.classList.remove('btn-outline-dark');
 
-        btnBangla.classList.add('btn-outline-primary');
-        btnBangla.classList.remove('btn-primary');
+        btnBangla.classList.add('btn-outline-dark');
+        btnBangla.classList.remove('btn-dark');
     });
 
     btnBangla.addEventListener('click', () => {
         banglaStory.classList.remove('d-none');
         englishStory.classList.add('d-none');
 
-        btnBangla.classList.add('btn-primary');
-        btnBangla.classList.remove('btn-outline-primary');
+        btnBangla.classList.add('btn-dark');
+        btnBangla.classList.remove('btn-outline-dark');
 
-        btnEnglish.classList.add('btn-outline-primary');
-        btnEnglish.classList.remove('btn-primary');
+        btnEnglish.classList.add('btn-outline-dark');
+        btnEnglish.classList.remove('btn-dark');
     });
 
     // Flip cards (unchanged)
