@@ -241,17 +241,14 @@ class StoryController extends Controller
             abort(404);
         }
 
+        $language = $request->get('lang', 'en'); // default English
+
         // AJAX response
         if ($request->ajax()) {
-            return view('story._story_content', compact('story'))->render();
+            return view('story._story_content', compact('story', 'language'))->render();
         }
 
-        return view('story.index', compact(
-            'story',
-            'words',
-            'categories',
-            'category'
-        ));
+        return view('story.index', compact('story', 'words', 'categories', 'category', 'language'));
     }
 
 

@@ -1,22 +1,37 @@
-<div class="card border-0 shadow-sm rounded-4 mb-4 p-4" id="story_{{ $story['story_id'] }}">
+<div class="card border-0 shadow-sm rounded-4 mb-5">
+            <div class="card-body px-4 px-md-5 py-4">
 
-    <!-- Story Title -->
-    <h3 class="fw-bold mb-3">{{ $story['title'] ?? 'Untitled Story' }}</h3>
+                <!-- Header -->
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <span class="text-dark fw-bold">
+                        {{ $story['story_id'] }}: {{ $story['title'] }}
+                    </span>
 
-    <!-- Language Toggle -->
-    <div class="mb-3">
-        <button id="btnEnglish" class="btn btn-dark btn-sm me-2">English</button>
-        <button id="btnBangla" class="btn btn-secondary btn-sm">Bangla</button>
-    </div>
+                    <!-- Toggle Buttons -->
+                    <div class="btn-group btn-group-md" role="group">
+                        <button class="btn btn-dark" id="btnEnglish">
+                            English
+                        </button>
+                        <button class="btn btn-outline-dark" id="btnBangla">
+                            বাংলা
+                        </button>
+                    </div>
+                </div>
 
-    <!-- English Story -->
-    <div id="englishStory" class="">
-        <p>{{ $story['english'] ?? 'No English version available.' }}</p>
-    </div>
+                <!-- ENGLISH VERSION -->
+                <div id="englishStory" class="story-content fs-5 lh-lg text-dark {{ $language === 'en' ? '' : 'd-none' }}">
+                    @foreach(explode("\n\n", $story['english'] ?? '') as $paragraph)
+                        <p class="mb-4">{{ $paragraph }}</p>
+                    @endforeach
+                </div>
 
-    <!-- Bangla Story -->
-    <div id="banglaStory" class="d-none">
-        <p>{{ $story['bangla'] ?? 'No Bangla version available.' }}</p>
-    </div>
+                <!-- BANGLA VERSION -->
+                <div id="banglaStory" class="story-content fs-5 lh-lg text-muted {{ $language === 'bn' ? '' : 'd-none' }}">
+                    @foreach(explode("\n\n", $story['bangla'] ?? '') as $paragraph)
+                        <p class="mb-4">{{ $paragraph }}</p>
+                    @endforeach
+                </div>
 
-</div>
+
+            </div>
+        </div>

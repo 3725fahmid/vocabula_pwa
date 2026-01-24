@@ -33,20 +33,19 @@
                 <div class="col-lg-6">
                     <form action="" method="GET" class="d-flex gap-2">
                         
-                        <select name="category_filter"
-                                class="form-select rounded px-4">
-                            <option value="">All Categories</option>
-                            {{-- @foreach($categories as $category)
-                                <option value="{{ $category->id }}">
-                                    {{ $category->name }}
-                                </option>
-                            @endforeach --}}
+                        <select id="categoryFilter" class="form-select rounded px-4">
+                                @foreach($categories as $cat)
+                                    <option value="{{ $cat }}">
+                                        {{ $cat === $category ? 'selected' : '' }}
+                                        {{ ucfirst($cat) }}
+                                    </option>
+                                @endforeach
                         </select>
 
-                        <button type="submit"
+                        {{-- <button type="submit"
                                 class="btn btn-dark rounded px-4 fw-semibold">
                             Filter
-                        </button>
+                        </button> --}}
                     </form>
                 </div>
 
@@ -55,8 +54,12 @@
     </div>
 
 
+    <div id="storyContent">
+        @include('story._story_content', ['story' => $story])
+    </div>
+
     <!-- Story Card With Language Toggle -->
-        <div class="card border-0 shadow-sm rounded-4 mb-5">
+        {{-- <div class="card border-0 shadow-sm rounded-4 mb-5">
             <div class="card-body px-4 px-md-5 py-4">
 
                 <!-- Header -->
@@ -95,7 +98,7 @@
                 </div>
 
             </div>
-        </div>
+        </div> --}}
 
         <div class="card border-0 shadow-sm rounded-4">
             <div class="card-body px-4 py-4">
@@ -327,33 +330,44 @@
             })
 
 
-    const btnEnglish = document.getElementById('btnEnglish');
-    const btnBangla  = document.getElementById('btnBangla');
+    function bindLanguageToggle() {
+        document.querySelectorAll('.btn-group').forEach(group => {
+            const btnEnglish = group.querySelector('#btnEnglish');
+            const btnBangla  = group.querySelector('#btnBangla');
+            const card = group.closest('.card');
+            const en = card.querySelector('#englishStory');
+            const bn = card.querySelector('#banglaStory');
 
-    const englishStory = document.getElementById('englishStory');
-    const banglaStory  = document.getElementById('banglaStory');
+            const activeLang = card.dataset.activeLang || 'en';
+            if (activeLang === 'en') {
+                en.classList.remove('d-none');
+                bn.classList.add('d-none');
+                btnEnglish.classList.add('btn-dark');
+                btnBangla.classList.remove('btn-dark');
+            } else {
+                bn.classList.remove('d-none');
+                en.classList.add('d-none');
+                btnBangla.classList.add('btn-dark');
+                btnEnglish.classList.remove('btn-dark');
+            }
 
-    btnEnglish.addEventListener('click', () => {
-        englishStory.classList.remove('d-none');
-        banglaStory.classList.add('d-none');
+            btnEnglish.onclick = () => {
+                en.classList.remove('d-none');
+                bn.classList.add('d-none');
+                btnEnglish.classList.add('btn-dark');
+                btnBangla.classList.remove('btn-dark');
+                card.dataset.activeLang = 'en';
+            };
 
-        btnEnglish.classList.add('btn-dark');
-        btnEnglish.classList.remove('btn-outline-dark');
-
-        btnBangla.classList.add('btn-outline-dark');
-        btnBangla.classList.remove('btn-dark');
-    });
-
-    btnBangla.addEventListener('click', () => {
-        banglaStory.classList.remove('d-none');
-        englishStory.classList.add('d-none');
-
-        btnBangla.classList.add('btn-dark');
-        btnBangla.classList.remove('btn-outline-dark');
-
-        btnEnglish.classList.add('btn-outline-dark');
-        btnEnglish.classList.remove('btn-dark');
-    });
+            btnBangla.onclick = () => {
+                bn.classList.remove('d-none');
+                en.classList.add('d-none');
+                btnBangla.classList.add('btn-dark');
+                btnEnglish.classList.remove('btn-dark');
+                card.dataset.activeLang = 'bn';
+            };
+        });
+    }
 
     // Flip cards (unchanged)
     document.querySelectorAll('.scene-card').forEach(card => {
@@ -369,6 +383,19 @@
             icon.classList.toggle('ri-add-line');
             icon.classList.toggle('ri-subtract-line');
         });
+    });
+
+
+    document.getElementById('categoryFilter').addEventListener('change', function () {
+    const lang = document.getElementById('btnBangla').classList.contains('btn-dark') ? 'bn' : 'en';
+    const url = `{{ url()->current() }}?category=${this.value}&lang=${lang}`;
+
+    fetch(url, { headers: { 'X-Requested-With': 'XMLHttpRequest' }})
+        .then(res => res.text())
+            .then(html => {
+                document.getElementById('storyContent').innerHTML = html;
+                bindLanguageToggle();
+            });
     });
     
 </script>
