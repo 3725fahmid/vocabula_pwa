@@ -127,56 +127,133 @@ class StoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    // public function show($id)
+    // {
+    //     //
+
+    //     // Import the Excel file
+    //     $story_collections = Excel::toCollection(new class implements WithHeadingRow {
+    //         public function headingRow(): int
+    //         {
+    //             return 1; // First row as heading
+    //         }
+    //     }, public_path('storyassets/story.xlsx'));
+
+    //     $word_collections = Excel::toCollection(new class implements WithHeadingRow {
+    //         public function headingRow(): int
+    //         {
+    //             return 1; // First row as heading
+    //         }
+    //     }, public_path('storyassets/story_words.xlsx'));
+
+
+    //     // Get the first sheet as array of rows
+    //     $storyData = $story_collections->first()->map(function ($row) {
+    //         return array_map('trim', $row->toArray());
+    //     });
+
+    //     // Get the first sheet as array of rows
+    //     $wordData = $word_collections->first()->map(function ($row) {
+    //         return array_map('trim', $row->toArray());
+    //     });
+
+    //     // Find the story with the matching story_id
+    //     $story = $storyData->firstWhere('story_id', $id);
+
+    //     // Find the word with the matching story_id 
+    //     $words = $wordData->Where('story_id', $id);
+
+    //     // dd($words);
+
+    //     // Optional: handle case if story not found
+    //     if (!$story) {
+    //         abort(404, 'Story not found');
+    //     }
+
+    //     // dd($story);
+    //     // Pass the story to a Blade view
+    //     return view('story.index', compact('story', 'words'));
+    //     // return view('story.index', ['users' => $usersWithAddress]);
+
+
+    // }
+
+
+    public function show(Request $request, $id)
     {
-        //
+        // 🔥 Cached Excel data
+        $storyData = Cache::remember('story_excel_data', 3600, function () {
+            $collections = Excel::toCollection(
+                new class implements WithHeadingRow {
+                    public function headingRow(): int
+                    {
+                        return 1;
+                    }
+                },
+                public_path('storyassets/story.xlsx')
+            );
 
-        // Import the Excel file
-        $story_collections = Excel::toCollection(new class implements WithHeadingRow {
-            public function headingRow(): int
-            {
-                return 1; // First row as heading
-            }
-        }, public_path('storyassets/story.xlsx'));
-
-        $word_collections = Excel::toCollection(new class implements WithHeadingRow {
-            public function headingRow(): int
-            {
-                return 1; // First row as heading
-            }
-        }, public_path('storyassets/story_words.xlsx'));
-
-
-        // Get the first sheet as array of rows
-        $storyData = $story_collections->first()->map(function ($row) {
-            return array_map('trim', $row->toArray());
+            return $collections->first()->map(
+                fn($row) =>
+                array_map('trim', $row->toArray())
+            );
         });
 
-        // Get the first sheet as array of rows
-        $wordData = $word_collections->first()->map(function ($row) {
-            return array_map('trim', $row->toArray());
+
+
+        $wordData = Cache::remember('story_word_excel_data', 3600, function () {
+            $collections = Excel::toCollection(
+                new class implements WithHeadingRow {
+                    public function headingRow(): int
+                    {
+                        return 1;
+                    }
+                },
+                public_path('storyassets/story_words.xlsx')
+            );
+
+            return $collections->first()->map(
+                fn($row) =>
+                array_map('trim', $row->toArray())
+            );
         });
 
-        // Find the story with the matching story_id
-        $story = $storyData->firstWhere('story_id', $id);
+        // Categories for this story
+        $categories = $storyData
+            ->where('story_id', $id)
+            ->pluck('category')
+            ->unique()
+            ->values();
 
-        // Find the word with the matching story_id 
-        $words = $wordData->Where('story_id', $id);
+        $category = $request->get('category', $categories->first());
 
+        // Story by category
+        $story = $storyData
+            ->where('story_id', $id)
+            ->where('category', $category)
+            ->first();
+
+        // Words (unchanged)
+        $words = $wordData->where('story_id', $id);
         // dd($words);
 
-        // Optional: handle case if story not found
         if (!$story) {
-            abort(404, 'Story not found');
+            abort(404);
         }
 
-        // dd($story);
-        // Pass the story to a Blade view
-        return view('story.index', compact('story', 'words'));
-        // return view('story.index', ['users' => $usersWithAddress]);
+        // AJAX response
+        if ($request->ajax()) {
+            return view('story._story_content', compact('story'))->render();
+        }
 
-
+        return view('story.index', compact(
+            'story',
+            'words',
+            'categories',
+            'category'
+        ));
     }
+
 
     /**
      * Show the form for editing the specified resource.
