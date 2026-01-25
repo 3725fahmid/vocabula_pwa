@@ -17,9 +17,10 @@
         ← Back
     </a>
 
-    <!-- NUMBER OF QUESTIONS FILTER -->
+     <!-- QUESTIONS FILTER -->
     <div class="card border-0 shadow-sm rounded-4 mb-4">
         <div class="card-body text-center">
+            <!-- NUMBER OF QUESTIONS FILTER -->
             <span class="fw-semibold me-2">Number of Questions:</span>
             <div class="btn-group filter-btns">
                 <button class="btn btn-outline-primary active" data-count="all">All</button>
@@ -28,21 +29,19 @@
                 <button class="btn btn-outline-primary" data-count="50">50</button>
                 <button class="btn btn-outline-primary" data-count="100">100</button>
             </div>
+            <!-- FIRST LETTER FILTER -->
+            <label for="letterFilter" class="fw-semibold me-2">Filter by First Letter:</label>
+            <select id="letterFilter" class="form-select d-inline-block w-auto">
+                <option value="all" selected>All</option>
+                @foreach(range('A','Z') as $letter)
+                    <option value="{{ $letter }}">{{ $letter }}</option>
+                @endforeach
+            </select>
         </div>
     </div>
 
     <!-- FIRST LETTER FILTER -->
-    <div class="card border-0 shadow-sm rounded-4 mb-4">
-        <div class="card-body text-center">
-            <span class="fw-semibold me-2">Filter by First Letter:</span>
-            <div class="btn-group letter-filter" role="group">
-                @foreach(range('A','Z') as $letter)
-                    <button class="btn btn-outline-secondary" data-letter="{{ $letter }}">{{ $letter }}</button>
-                @endforeach
-                <button class="btn btn-outline-secondary active" data-letter="all">All</button>
-            </div>
-        </div>
-    </div>
+
 
     @php
         $shuffledWords = $words->shuffle()->take(100);
@@ -174,21 +173,9 @@ $(function () {
         filterQuestions();
     });
 
-    // LETTER FILTER CLICK
-    $(".letter-filter button").click(function () {
-        const letter = $(this).data("letter");
-
-        if ($(this).hasClass("active")) {
-            // Toggle off → reset to 'all'
-            activeLetter = "all";
-            $(".letter-filter button").removeClass("active");
-            $(".letter-filter button[data-letter='all']").addClass("active");
-        } else {
-            activeLetter = letter;
-            $(".letter-filter button").removeClass("active");
-            $(this).addClass("active");
-        }
-
+    // LETTER FILTER USING SELECT
+    $("#letterFilter").change(function () {
+        activeLetter = $(this).val(); // Get selected letter
         filterQuestions();
     });
 
