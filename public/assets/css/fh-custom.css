@@ -696,3 +696,23 @@ a {
 }
 
 /* Quiz page design end  */
+
+
+
+/* 
+
+  story page paragraph word design 
+
+*/
+
+
+.highlight-word {
+  color: #0d6efd;
+  /* Bootstrap primary */
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.highlight-word:hover {
+  text-decoration: underline;
+}

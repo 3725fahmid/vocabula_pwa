@@ -335,9 +335,94 @@
 
 
 @section('scripts')
+
+
 <script src="{{ asset('assets/libs/owlcarousel/jquery.min.js') }}"></script>
 <script src="{{ asset('assets/libs/owlcarousel/owl.carousel.js') }}"></script>
 
+
+<script>
+    const wordDictionary = @json(
+        collect($words)->mapWithKeys(function ($item) {
+            return [strtolower($item['word']) => $item['wordmeaning']];
+        })
+    );
+
+    document.addEventListener('DOMContentLoaded', function () {
+
+    const paragraphs = document.querySelectorAll('.selectable-text');
+    const wordsInDB = Object.keys(wordDictionary);
+
+    paragraphs.forEach(p => {
+        let html = p.innerHTML;
+
+        wordsInDB.forEach(word => {
+            const regex = new RegExp(`\\b(${word})\\b`, 'gi');
+
+            html = html.replace(regex, function (match) {
+                return `<span class="highlight-word" data-word="${match.toLowerCase()}">${match}</span>`;
+            });
+        });
+
+        p.innerHTML = html;
+    });
+
+});
+
+document.addEventListener('click', function (e) {
+
+    if (!e.target.classList.contains('highlight-word')) return;
+
+    const word = e.target.dataset.word;
+    const meaning = wordDictionary[word];
+    if (!meaning) return;
+
+    const popup = document.getElementById('wordPopup');
+    const rect = e.target.getBoundingClientRect();
+
+    // Set content
+    document.getElementById('popupWord').innerText = word;
+    document.getElementById('popupMeaning').innerText = meaning;
+
+    // Position popup above the word
+    const top = window.scrollY + rect.top - popup.offsetHeight - 10;
+    const left = window.scrollX + rect.left + (rect.width / 2);
+
+    popup.style.top = `${top}px`;
+    popup.style.left = `${left}px`;
+    popup.style.transform = 'translateX(-50%)';
+
+    popup.classList.remove('d-none');
+});
+
+document.addEventListener('click', function (e) {
+    const popup = document.getElementById('wordPopup');
+
+    if (
+        popup.classList.contains('d-none') ||
+        e.target.classList.contains('highlight-word')
+    ) {
+        return;
+    }
+
+    popup.classList.add('d-none');
+});
+
+
+function showWordMeaning(word, meaning) {
+    document.getElementById('toastWord').innerText = word;
+    document.getElementById('toastMeaning').innerText = meaning;
+
+    const toast = new bootstrap.Toast(
+        document.getElementById('wordToast'),
+        { delay: 4000 }
+    );
+
+    toast.show();
+}
+
+
+</script>
 
 <script>
 
