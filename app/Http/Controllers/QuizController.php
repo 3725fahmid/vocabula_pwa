@@ -76,6 +76,33 @@ class QuizController extends Controller
         return view('quiz.mcqtest', compact('words'));
     }
 
+    public function mocMcqTest()
+    {
+        //
+
+        $words = Cache::remember('story_words', 3600, function () {
+            $collections = Excel::toCollection(new class implements WithHeadingRow {
+                public function headingRow(): int
+                {
+                    return 1;
+                }
+            }, public_path('storyassets/story_words.xlsx'));
+
+            return $collections->first()->map(function ($row) {
+                return array_map('trim', $row->toArray());
+            });
+        });
+
+
+        if ($words->isEmpty()) {
+            abort(404);
+        }
+
+        // dd($wordsdata);
+
+        return view('quiz.mocmcqtest', compact('words'));
+    }
+
     public function dragDrop($id)
     {
         //

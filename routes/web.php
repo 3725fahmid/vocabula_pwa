@@ -34,6 +34,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('story', StoryController::class);
     Route::resource('quiz', QuizController::class);
     Route::get('mcq-quiz', [QuizController::class, 'mcqTest'])->name('mcq');
+    Route::get('moc-mcq-quiz', [QuizController::class, 'mocMcqTest'])->name('moc_mcq');
     Route::get('quiz/dragdrop/{id}', [QuizController::class, 'dragDrop'])
         ->name('quiz.drag_deop');
     Route::get('quiz/word-meaning-builder/{id}', [QuizController::class, 'meaningBuilder'])

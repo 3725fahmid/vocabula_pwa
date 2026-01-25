@@ -63,6 +63,36 @@
                         </div>
                         <div class="modal-body">
                             <div class="row">
+                                <!-- moc_mcq quiz  -->
+                                <div class="col-12 col-lg-6">
+                                    <a href="{{ route('moc_mcq') }}"
+                                        class="text-decoration-none">
+                                        <div class="card mode-card h-100 rounded-4 border-0">
+                                            <div class="card-body p-4">
+
+                                                <div class="mode-icon bg-warning bg-opacity-10 text-warning">
+                                                    ✍️
+                                                </div>
+
+                                                <h5 class="fw-bold mt-3 mb-2">
+                                                   Moc Quiz test
+                                                </h5>
+
+                                                <p class="mb-1 text-warning">
+                                                    This Test is for all over the vocabulary that you learned until now. If you complete you all learning you can try this, Before you try this you should finish Quiz for single stories. 
+                                                </p>
+
+                                                <p class="text-muted small mb-0">
+                                                    Answer one question at a time, step by step.
+                                                </p>
+
+                                            </div>
+                                        </div>
+
+                                    </a>
+                                </div>
+
+                                <!-- final mcq quiz  -->
                                 <div class="col-12 col-lg-6">
                                     <a href="{{ route('mcq') }}"
                                         class="text-decoration-none">
