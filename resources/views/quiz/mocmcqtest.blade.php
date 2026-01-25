@@ -4,57 +4,66 @@
 
 @section('admin')
 
-<div class="page-content">
+<div class="page-content container">
 
     <!-- HEADER -->
     <div class="text-center mb-4">
-        <h3 class="fw-bold">Quick Quiz</h3>
+        <h3 class="fw-bold">Moc Quiz Test</h3>
         <p class="text-muted">Choose the correct meaning for each word</p>
     </div>
 
-    <!-- TIMER -->
-    <div class="text-center mb-4">
-        <span class="badge bg-warning fs-5 px-4 py-2 rounded-pill">
-            Time Left: <span id="timer">30:00</span>
-        </span>
-    </div>
-
+    <!-- BACK -->
     <a href="javascript:history.back()" class="btn btn-dark mb-3">
         ← Back
     </a>
 
+    <!-- NUMBER OF QUESTIONS FILTER -->
+    <div class="card border-0 shadow-sm rounded-4 mb-4">
+        <div class="card-body text-center">
+            <span class="fw-semibold me-2">Number of Questions:</span>
+            <div class="btn-group filter-btns">
+                <button class="btn btn-outline-primary active" data-count="all">All</button>
+                <button class="btn btn-outline-primary" data-count="10">10</button>
+                <button class="btn btn-outline-primary" data-count="25">25</button>
+                <button class="btn btn-outline-primary" data-count="50">50</button>
+                <button class="btn btn-outline-primary" data-count="100">100</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FIRST LETTER FILTER -->
+    <div class="card border-0 shadow-sm rounded-4 mb-4">
+        <div class="card-body text-center">
+            <span class="fw-semibold me-2">Filter by First Letter:</span>
+            <div class="btn-group letter-filter" role="group">
+                @foreach(range('A','Z') as $letter)
+                    <button class="btn btn-outline-secondary" data-letter="{{ $letter }}">{{ $letter }}</button>
+                @endforeach
+                <button class="btn btn-outline-secondary active" data-letter="all">All</button>
+            </div>
+        </div>
+    </div>
+
     @php
-        // Shuffle all questions
-        // $shuffledWords = $words->shuffle();
         $shuffledWords = $words->shuffle()->take(100);
     @endphp
 
+    <!-- QUESTIONS -->
     @foreach($shuffledWords as $index => $item)
-    {{-- 
-        Data safety check:
-        Do not render this question if `word` is missing or empty,
-        otherwise users will see a blank question title.
-    --}}
-    @continue(empty(trim($item['word'])))
+        @continue(empty(trim($item['word'])))
 
         @php
-            // 1. Take 3 WRONG answers (excluding correct one)
             $options = $words->pluck('wordmeaning')
-                            ->filter(fn($m) => trim($m) !== '')
-                            ->where(fn($m) => $m !== $item['wordmeaning'])
-                            ->shuffle()
-                            ->take(3)
-                            ->values();
+                ->filter(fn($m) => trim($m) !== '')
+                ->where(fn($m) => $m !== $item['wordmeaning'])
+                ->shuffle()
+                ->take(3)
+                ->values();
 
-            // 2. Add the CORRECT answer
             $options->push($item['wordmeaning']);
-
-            // 3. Final shuffle
             $options = $options->shuffle()->values();
         @endphp
 
-
-        <!-- QUESTION -->
         <div class="card border-0 shadow-sm rounded-4 mb-4 question-card"
              data-correct="{{ $item['wordmeaning'] }}">
 
@@ -69,15 +78,11 @@
                 </div>
 
                 <!-- OPTIONS -->
-                <div class="row g-3 options">
+                <div class="row g-3">
                     @foreach($options as $opt)
                         <div class="col-12 col-md-6">
                             <label class="option w-100">
-                                <input type="radio"
-                                       name="q{{ $index }}"
-                                       value="{{ $opt }}"
-                                       class="d-none">
-
+                                <input type="radio" name="q{{ $index }}" value="{{ $opt }}" class="d-none">
                                 <div class="option-box rounded-3 p-3 h-100">
                                     {{ $opt }}
                                 </div>
@@ -86,7 +91,6 @@
                     @endforeach
                 </div>
 
-                <!-- FEEDBACK -->
                 <div class="feedback mt-3 fw-semibold small"></div>
 
             </div>
@@ -99,8 +103,6 @@
         <button class="btn btn-primary px-5 py-2 rounded-pill submit-btn">
             Check Answers
         </button>
-
-        <div class="score mt-3"></div>
     </div>
 
 </div>
@@ -108,8 +110,7 @@
 @endsection
 
 @section('scripts')
-
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="{{ asset('assets/libs/sweetalert2/sweeralert2.min.js') }}"></script>
 
 <style>
 .option-box {
@@ -118,121 +119,145 @@
     cursor: pointer;
     transition: all .2s ease;
     font-size: .95rem;
-    border: 1px solid #fff;
 }
-
-.option-box:hover {
-    border: 1px solid #2e3;
-    background: rgb(190, 247, 195);
-}
-
-.option input:checked + .option-box {
-    background-color: #e7f3ff;
-    border-color: #1877f2;
-    color: #025c1a; 
-    box-shadow: 0 4px 12px rgba(24, 119, 242, 0.1);
-}
-
-.option-box.correct {
-    background: #e6f4ea !important;
-    border-color: #198754 !important;
-    color: #0f5132;
-}
-
-.option-box.wrong {
-    background: #fbeaea !important;
-    border-color: #dc3545 !important;
-    color: #842029;
-}
-
-.feedback {
-    min-height: 20px;
-}
-
-.feedback.correct {
-    color: #198754;
-}
-
-.feedback.wrong {
-    color: #dc3545;
-}
+.option-box:hover { background: #d1f7d6; border-color: #2ecc71; }
+.option input:checked + .option-box { background: #e7f3ff; border-color: #1877f2; }
+.option-box.correct { background: #e6f4ea !important; border-color: #198754 !important; }
+.option-box.wrong { background: #fbeaea !important; border-color: #dc3545 !important; }
+.feedback.correct { color: #198754; }
+.feedback.wrong { color: #dc3545; }
 </style>
 
 <script>
 $(function () {
 
-    // TIMER
-    let timeLeft = 50 * 60; // 50 minutes in seconds
+    let activeLetter = "all";
 
-    function formatTime(seconds) {
-        const m = Math.floor(seconds / 60).toString().padStart(2, '0');
-        const s = (seconds % 60).toString().padStart(2, '0');
-        return `${m}:${s}`;
+    function filterQuestions() {
+        const countBtn = $(".filter-btns button.active").data("count");
+        const questions = $(".question-card");
+
+        let visible = questions;
+
+        // LETTER FILTER
+        if (activeLetter !== "all") {
+            visible = questions.filter(function() {
+                const word = $(this).find("h5").text().trim();
+                return word.charAt(0).toUpperCase() === activeLetter;
+            });
+        }
+
+        // SHOW/HIDE QUESTIONS
+        questions.hide();
+        visible.show();
+
+        // NUMBER-OF-QUESTIONS LIMIT
+        if (countBtn !== "all") {
+            visible.slice(countBtn).hide();
+            visible = visible.slice(0, countBtn);
+        }
+
+        // ENABLE SUBMIT & INPUTS
+        $(".submit-btn").prop("disabled", false);
+        visible.find("input[type=radio]").prop("disabled", false);
+
+        // CLEAR PREVIOUS SELECTIONS & FEEDBACK
+        visible.find("input[type=radio]").prop("checked", false);
+        visible.find(".option-box").removeClass("correct wrong");
+        visible.find(".feedback").text("").removeClass("correct wrong");
     }
 
-    const timerEl = $("#timer");
+    // NUMBER OF QUESTIONS FILTER CLICK
+    $(".filter-btns button").click(function () {
+        $(".filter-btns button").removeClass("active");
+        $(this).addClass("active");
+        filterQuestions();
+    });
 
-    const timerInterval = setInterval(() => {
-        timeLeft--;
-        timerEl.text(formatTime(timeLeft));
+    // LETTER FILTER CLICK
+    $(".letter-filter button").click(function () {
+        const letter = $(this).data("letter");
 
-        if (timeLeft <= 0) {
-            clearInterval(timerInterval);
-            alert("Time's up! Submitting your answers...");
-            $(".submit-btn").click(); // Auto-submit
+        if ($(this).hasClass("active")) {
+            // Toggle off → reset to 'all'
+            activeLetter = "all";
+            $(".letter-filter button").removeClass("active");
+            $(".letter-filter button[data-letter='all']").addClass("active");
+        } else {
+            activeLetter = letter;
+            $(".letter-filter button").removeClass("active");
+            $(this).addClass("active");
         }
-    }, 1000);
 
-    // QUIZ SUBMISSION
-    $(".submit-btn").on("click", function () {
+        filterQuestions();
+    });
+
+
+    // SUBMIT
+    $(".submit-btn").click(function () {
 
         let score = 0;
-        let total = $(".question-card").length;
+        let total = $(".question-card:visible").length;
 
-        $(".question-card").each(function () {
-
-            const correctAnswer = $(this).data("correct");
-            const selectedInput = $(this).find("input:checked");
-            const feedback = $(this).find(".feedback");
+        $(".question-card:visible").each(function() {
+            let correct = $(this).data("correct");
+            let selected = $(this).find("input:checked");
+            let feedback = $(this).find(".feedback");
 
             feedback.removeClass("correct wrong");
-
-            // Remove previous colors
             $(this).find(".option-box").removeClass("correct wrong");
 
-            // Highlight correct option
-            $(this).find("input").each(function () {
-                if ($(this).val() === correctAnswer) {
-                    $(this).next(".option-box").addClass("correct");
+            $(this).find("input").each(function() {
+                if ($(this).val() === correct) {
+                    $(this).next().addClass("correct");
                 }
             });
 
-            if (selectedInput.length === 0) {
+            if (!selected.length) {
                 feedback.addClass("wrong").text("⚠ No answer selected");
                 return;
             }
 
-            if (selectedInput.val() === correctAnswer) {
+            if (selected.val() === correct) {
                 score++;
-                feedback.addClass("correct").text("✔ Correct answer");
+                feedback.addClass("correct").text("✔ Correct");
             } else {
-                selectedInput.next(".option-box").addClass("wrong");
-                feedback.addClass("wrong").text("✘ Wrong answer");
+                selected.next().addClass("wrong");
+                feedback.addClass("wrong").text("✘ Wrong");
             }
-
         });
 
-        $(".score").html(`
-            <span class="badge bg-success fs-6 px-4 py-2 rounded-pill">
-                Score: ${score} / ${total}
-            </span>
-        `);
+        let percent = Math.round((score / total) * 100);
+        let title, text, icon;
 
-        $(this).prop("disabled", true);
+        if (percent >= 80) {
+            title = "🏆 Excellent!";
+            text = "Best performance! Amazing work.";
+            icon = "success";
+        } else if (percent >= 70) {
+            title = "👍 Good Job!";
+            text = "Well done! Keep going.";
+            icon = "success";
+        } else if (percent >= 60) {
+            title = "🙂 Medium";
+            text = "You can improve with practice.";
+            icon = "info";
+        } else {
+            title = "💪 Keep It Up!";
+            text = "Not bad. Practice more!";
+            icon = "warning";
+        }
+
+        Swal.fire({
+            title: title,
+            html: `<b>Score:</b> ${score}/${total}<br><b>Percentage:</b> ${percent}%`,
+            icon: icon,
+            confirmButtonColor: "#0d6efd"
+        });
+
         $("input[type=radio]").prop("disabled", true);
+        $(this).prop("disabled", true);
 
-        // Stop timer if user manually submits
-        clearInterval(timerInterval);
     });
 
 });
