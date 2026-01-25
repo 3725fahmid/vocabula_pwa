@@ -40,6 +40,7 @@ class HomepageController extends Controller
                     return $rowArray;
                 })
                 ->filter()
+                ->unique('story_id')
                 ->values(); // IMPORTANT
         });
 
@@ -67,6 +68,7 @@ class HomepageController extends Controller
                 'query' => request()->query(),
             ]
         );
+
 
         return view('layouts.index', [
             'storyData' => $paginatedStoryData
