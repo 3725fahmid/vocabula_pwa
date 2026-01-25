@@ -342,33 +342,55 @@
 
 
 <script>
-    const wordDictionary = @json(
-        collect($words)->mapWithKeys(function ($item) {
-            return [strtolower($item['word']) => $item['wordmeaning']];
-        })
-    );
+/* ===============================
+   WORD DICTIONARY (FROM LARAVEL)
+================================ */
+const wordDictionary = @json(
+    collect($words)->mapWithKeys(function ($item) {
+        return [strtolower($item['word']) => $item['wordmeaning']];
+    })
+);
 
-    document.addEventListener('DOMContentLoaded', function () {
-
+/* ===============================
+   APPLY WORD HIGHLIGHTING
+   (Reusable for AJAX)
+================================ */
+function applyWordHighlighting() {
     const paragraphs = document.querySelectorAll('.selectable-text');
     const wordsInDB = Object.keys(wordDictionary);
 
     paragraphs.forEach(p => {
+
+        // Prevent double-highlighting
+        if (p.dataset.highlighted === 'true') return;
+
         let html = p.innerHTML;
 
         wordsInDB.forEach(word => {
             const regex = new RegExp(`\\b(${word})\\b`, 'gi');
 
-            html = html.replace(regex, function (match) {
+            html = html.replace(regex, match => {
                 return `<span class="highlight-word" data-word="${match.toLowerCase()}">${match}</span>`;
             });
         });
 
         p.innerHTML = html;
+        p.dataset.highlighted = 'true';
     });
+}
 
+/* ===============================
+   INITIAL LOAD
+================================ */
+document.addEventListener('DOMContentLoaded', function () {
+    bindLanguageToggle();
+    applyWordHighlighting();
 });
 
+/* ===============================
+   WORD CLICK POPUP
+   (Event Delegation – AJAX Safe)
+================================ */
 document.addEventListener('click', function (e) {
 
     if (!e.target.classList.contains('highlight-word')) return;
@@ -380,11 +402,9 @@ document.addEventListener('click', function (e) {
     const popup = document.getElementById('wordPopup');
     const rect = e.target.getBoundingClientRect();
 
-    // Set content
     document.getElementById('popupWord').innerText = word;
     document.getElementById('popupMeaning').innerText = meaning;
 
-    // Position popup above the word
     const top = window.scrollY + rect.top - popup.offsetHeight - 10;
     const left = window.scrollX + rect.left + (rect.width / 2);
 
@@ -395,20 +415,23 @@ document.addEventListener('click', function (e) {
     popup.classList.remove('d-none');
 });
 
+/* ===============================
+   CLOSE POPUP ON OUTSIDE CLICK
+================================ */
 document.addEventListener('click', function (e) {
     const popup = document.getElementById('wordPopup');
 
     if (
         popup.classList.contains('d-none') ||
         e.target.classList.contains('highlight-word')
-    ) {
-        return;
-    }
+    ) return;
 
     popup.classList.add('d-none');
 });
 
-
+/* ===============================
+   OPTIONAL TOAST VERSION
+================================ */
 function showWordMeaning(word, meaning) {
     document.getElementById('toastWord').innerText = word;
     document.getElementById('toastMeaning').innerText = meaning;
@@ -421,10 +444,33 @@ function showWordMeaning(word, meaning) {
     toast.show();
 }
 
+/* ===============================
+   CATEGORY FILTER (AJAX)
+================================ */
+document.getElementById('categoryFilter').addEventListener('change', function () {
 
+    const lang = document.getElementById('btnBangla')
+        .classList.contains('btn-dark') ? 'bn' : 'en';
+
+    const url = `{{ url()->current() }}?category=${this.value}&lang=${lang}`;
+
+    fetch(url, {
+        headers: { 'X-Requested-With': 'XMLHttpRequest' }
+    })
+    .then(res => res.text())
+    .then(html => {
+        document.getElementById('storyContent').innerHTML = html;
+
+        bindLanguageToggle();
+        applyWordHighlighting(); // 🔥 REQUIRED AFTER AJAX
+    });
+});
 </script>
 
+
 <script>
+
+    // owlCarousel functionality 
 
     $(document).ready(function() {
               $('.owl-carousel').owlCarousel({
@@ -454,7 +500,7 @@ function showWordMeaning(word, meaning) {
               })
             })
 
-
+    // Bangla english toogle button 
     function bindLanguageToggle() {
         document.querySelectorAll('.btn-group').forEach(group => {
             const btnEnglish = group.querySelector('#btnEnglish');
@@ -502,6 +548,7 @@ function showWordMeaning(word, meaning) {
         });
     });
 
+    // word details collapse btn
     document.querySelectorAll('.custom-collapse-icon').forEach(btn => {
         btn.addEventListener('click', function () {
             const icon = this.querySelector('i');
@@ -510,21 +557,7 @@ function showWordMeaning(word, meaning) {
         });
     });
 
-    document.addEventListener('DOMContentLoaded', function () {
-        bindLanguageToggle();
-    });
-
-    document.getElementById('categoryFilter').addEventListener('change', function () {
-    const lang = document.getElementById('btnBangla').classList.contains('btn-dark') ? 'bn' : 'en';
-    const url = `{{ url()->current() }}?category=${this.value}&lang=${lang}`;
-
-    fetch(url, { headers: { 'X-Requested-With': 'XMLHttpRequest' }})
-        .then(res => res.text())
-            .then(html => {
-                document.getElementById('storyContent').innerHTML = html;
-                bindLanguageToggle();
-            });
-    });
+    
     
 </script>
 @endsection

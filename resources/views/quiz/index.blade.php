@@ -31,8 +31,72 @@
     </div>
 
         <div class="row">
-            <div class="col-12 col-md-6 col-lg-4">
-                <a href="{{ route('mcq') }}"
+            <div class="col-12">
+                <div class="card mode-card h-100 rounded-4 border-0 cursor-pointer btn" data-bs-toggle="modal" data-bs-target=".bs-example-modal-center">
+                    <div class="card-body p-4">
+
+                        <h5 class="fw-bold mt-3 mb-2">
+                            Quiz test
+                        </h5>
+
+                        <p class="mb-1 text-warning">
+                            This Test is for all over the vocabulary that you learned until now. If you complete you all learning you can try this, Before you try this you should finish Quiz for single stories. 
+                        </p>
+
+                        <p class="text-muted small mb-0">
+                            Answer one question at a time, step by step.
+                        </p>
+
+                    </div>
+                </div>
+             {{-- <div class="my-4 text-center">
+                <!-- Small modal -->
+                <button type="button" class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal" data-bs-target=".bs-example-modal-center">Center modal</button>
+            </div> --}}
+
+            <div class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Quiz Test</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-12 col-lg-6">
+                                    <a href="{{ route('mcq') }}"
+                                        class="text-decoration-none">
+                                        <div class="card mode-card h-100 rounded-4 border-0">
+                                            <div class="card-body p-4">
+
+                                                <div class="mode-icon bg-warning bg-opacity-10 text-warning">
+                                                    ✍️
+                                                </div>
+
+                                                <h5 class="fw-bold mt-3 mb-2">
+                                                    Quiz test
+                                                </h5>
+
+                                                <p class="mb-1 text-warning">
+                                                    This Test is for all over the vocabulary that you learned until now. If you complete you all learning you can try this, Before you try this you should finish Quiz for single stories. 
+                                                </p>
+
+                                                <p class="text-muted small mb-0">
+                                                    Answer one question at a time, step by step.
+                                                </p>
+
+                                            </div>
+                                        </div>
+
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+
+                {{-- <a href="{{ route('mcq') }}"
                     class="text-decoration-none">
                 
 
@@ -58,7 +122,7 @@
                         </div>
                     </div>
 
-                </a>
+                </a> --}}
             </div>
         </div>
 
