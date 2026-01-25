@@ -103,6 +103,43 @@
             </div>
         </div> --}}
 
+
+        <!-- Vocabulary list Section -->
+        <div class="card border-0 shadow-sm rounded-4">
+            <div class="card-body px-4 py-4">
+                <div class="row g-3">
+                    <div class="col-12">
+                        <!-- MODERN WORD LIST -->
+                        <!-- GRID WORD LIST -->
+                        <div class="card border-0 shadow-sm rounded-4">
+                            <div class="card-body p-4">
+                                <h5 class="fw-bold mb-4">📘 Word List</h5>
+                                <div class="row g-3">
+                                    @foreach($words as $item)
+                                        <div class="col-6 col-md-4 col-lg-2">
+
+                                            <div class="border rounded-3 h-100 p-3 text-center">
+
+                                                <h6 class="fw-bold mb-2">
+                                                    {{ $item['word'] }}
+                                                </h6>
+
+                                                <p class="text-muted small mb-0">
+                                                    {{ $item['wordmeaning'] }}
+                                                </p>
+
+                                            </div>
+
+                                        </div>
+                                    @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vocabulary carousel Section -->
         <div class="card border-0 shadow-sm rounded-4">
             <div class="card-body px-4 py-4">
 
