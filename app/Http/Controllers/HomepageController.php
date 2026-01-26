@@ -75,6 +75,23 @@ class HomepageController extends Controller
         ]);
     }
 
+    public function search(Request $request)
+    {
+        $query = strtolower(trim($request->get('q')));
+
+        if (!$query) {
+            return response()->json([]);
+        }
+
+        $storyData = Cache::get('story_data');
+
+        $results = $storyData->filter(function ($item) use ($query) {
+            return str_contains(strtolower($item['title'] ?? ''), $query);
+        })->values();
+
+        return response()->json($results);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

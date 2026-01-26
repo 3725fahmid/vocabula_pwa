@@ -4,7 +4,23 @@
 
 @section('admin')
 <div class="page-content">
+    
+    
     <div class="container" style="max-width: 880px;">
+        <div class="position-relative mb-4">
+            <input type="text"
+                id="storySearch"
+                class="form-control form-control-lg rounded-pill ps-5 shadow-sm"
+                placeholder="Search stories..."
+                autocomplete="off">
+    
+            <i class="ri-search-line position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
+    
+            <div id="searchResults"
+                class="list-group position-absolute w-100 mt-2 shadow d-none"
+                style="z-index: 1000; max-height: 300px; overflow-y: auto;">
+            </div>
+        </div>
         
         @foreach ($storyData as $item)
             @if(isset($item['story_id']))
@@ -54,5 +70,59 @@
 @endsection
 
 @section('scripts')
+<script>
+const searchInput = document.getElementById('storySearch');
+const resultsBox = document.getElementById('searchResults');
+
+let controller = null;
+
+searchInput.addEventListener('input', function () {
+    const query = this.value.trim();
+
+    if (query.length < 2) {
+        resultsBox.classList.add('d-none');
+        resultsBox.innerHTML = '';
+        return;
+    }
+
+    // cancel previous request
+    if (controller) controller.abort();
+    controller = new AbortController();
+
+    fetch(`/stories/search?q=${encodeURIComponent(query)}`, {
+        signal: controller.signal
+    })
+    .then(res => res.json())
+    .then(data => {
+        resultsBox.innerHTML = '';
+
+        if (!data.length) {
+            resultsBox.innerHTML = `
+                <div class="list-group-item text-muted">
+                    No stories found
+                </div>`;
+        } else {
+            data.forEach(item => {
+                resultsBox.innerHTML += `
+                    <a href="/story/${item.story_id}"
+                       class="list-group-item list-group-item-action">
+                        <strong>${item.title}</strong><br>
+                        <small class="text-muted">Story #${item.story_id}</small>
+                    </a>`;
+            });
+        }
+
+        resultsBox.classList.remove('d-none');
+    });
+});
+
+// Hide results when clicking outside
+document.addEventListener('click', e => {
+    if (!e.target.closest('#storySearch')) {
+        resultsBox.classList.add('d-none');
+    }
+});
+</script>
+
 
 @endsection

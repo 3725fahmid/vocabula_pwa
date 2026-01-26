@@ -28,7 +28,10 @@ Route::middleware('auth')->group(function () {
         Route::post('/update/password', 'UpdatePassword')->name('update.password');
     });
 
-    // Pages Route 
+
+    // Pages Route
+    Route::get('/stories/search', [HomepageController::class, 'search'])
+        ->name('stories.search');
     Route::get('insights/{id}', [StoryController::class, 'wordDetails'])
         ->name('story.worddata');
     Route::resource('story', StoryController::class);
