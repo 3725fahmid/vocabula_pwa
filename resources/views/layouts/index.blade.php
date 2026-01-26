@@ -107,15 +107,24 @@ function hideResults() {
 
 function renderResults(items) {
     results.innerHTML = items.length
-        ? items.map(item => `
-            <a class="list-group-item"
-               href="/story/${item.story_id}">
-               <strong>${item.title}</strong>
-               <div class="small text-muted">Story #${item.story_id}</div>
-            </a>`).join('')
+        ? items.map(item => {
+            // Get first 30 words of item.english
+            const shortEnglish = item.english.split(' ').slice(0, 30).join(' ');
+            // Add ellipsis if text was longer
+            const displayEnglish = item.english.split(' ').length > 30 ? shortEnglish + '...' : shortEnglish;
+
+            return `
+                <a class="list-group-item"
+                   href="/story/${item.story_id}">
+                   <strong>${item.story_id} . ${item.title}</strong>
+                   <div class="small text-muted">${displayEnglish}</div>
+                </a>
+            `;
+        }).join('')
         : `<div class="list-group-item text-muted">No results</div>`;
 
     results.classList.remove('d-none');
 }
+
 </script>
 @endsection
