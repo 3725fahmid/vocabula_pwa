@@ -473,7 +473,8 @@ document.getElementById('categoryFilter').addEventListener('change', function ()
     // owlCarousel functionality 
 
     $(document).ready(function() {
-              $('.owl-carousel').owlCarousel({
+        var owl = $('.owl-carousel');
+              owl.owlCarousel({
                 loop: true,
                 margin: 10,
                 responsiveClass: true,
@@ -497,8 +498,16 @@ document.getElementById('categoryFilter').addEventListener('change', function ()
                     margin: 20
                   }
                 }
-              })
-            })
+              });
+              owl.on('mousewheel', '.owl-stage', function (e) {
+                  if (e.deltaY>0) {
+                      owl.trigger('next.owl');
+                  } else {
+                      owl.trigger('prev.owl');
+                  }
+                  e.preventDefault();
+              });
+            });
 
     // Bangla english toogle button 
     function bindLanguageToggle() {
