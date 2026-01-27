@@ -105,50 +105,52 @@
 
 
         <!-- Vocabulary list Section -->
-        <div class="card border-0 shadow-sm rounded-4">
-            <div class="card-body px-4 py-4">
-                <div class="row g-3">
-                    <div class="col-12">
-                        <!-- MODERN WORD LIST -->
-                        <!-- GRID WORD LIST -->
-                        <div class="card border-0 shadow-sm rounded-4">
-                            <div class="card-body p-4">
-                                <h5 class="fw-bold mb-4">📘 Word List</h5>
-                                <div class="row g-3">
-                                    @foreach($words as $item)
-                                        <div class="col-6 col-md-4 col-lg-2">
+        <div class="row g-3">
+            <div class="col-12">
+                <!-- MODERN WORD LIST -->
+                <!-- GRID WORD LIST -->
+                <div class="card border-0 shadow-sm rounded-4">
+                    <div class="card-body p-4">
+                        <h5 class="fw-bold mb-4">📘 Word List</h5>
+                        <div class="row g-3">
+                            @foreach($words as $item)
+                                <div class="col-6 col-md-4 col-lg-2 mb-3">
 
-                                            <div class="border rounded-3 h-100 p-3 text-center">
+                                    <div class="glass-card h-100 p-3 text-center export-card">
 
-                                                <h6 class="fw-bold mb-2">
-                                                    {{ $item['word'] }}
-                                                </h6>
+                                        <h6 class="fw-bold mb-2 text-dark">
+                                            {{ $item['word'] }}
+                                        </h6>
 
-                                                <p class="text-muted small mb-0">
-                                                    {{ $item['wordmeaning'] }}
-                                                </p>
+                                        <p class="small mb-0 text-dark-50">
+                                            {{ $item['wordmeaning'] }}
+                                        </p>
 
-                                            </div>
+                                        <button
+                                            class="btn btn-sm btn-outline-primary jpg-btn mt-2"
+                                            onclick="downloadSingleCard(this)">
+                                            ⬇ Download
+                                        </button>
 
-                                        </div>
-                                    @endforeach
-                            </div>
-                        </div>
+                                    </div>
+
+                                </div>
+                            @endforeach
+
                     </div>
                 </div>
             </div>
         </div>
-
         <!-- Vocabulary carousel Section -->
-        <div class="card border-0 shadow-sm rounded-4">
-            <div class="card-body px-4 py-4">
-
-                <h5 class="fw-bold mb-4">
-                    Vocabulary from this story
-                </h5>
-
-                <div class="row g-3">
-                    <div class="col-12">
+        
+        <div class="row g-3">
+            <div class="col-12">
+                <div class="card border-0 shadow-sm rounded-4">
+                    <div class="card-body px-4 py-4">
+        
+                        <h5 class="fw-bold mb-4">
+                            Vocabulary from this story
+                        </h5>
                         <div class="owl-carousel owl-theme">
                             @foreach($words as $item)
                             <div class="item">
@@ -339,6 +341,7 @@
 
 <script src="{{ asset('assets/libs/owlcarousel/jquery.min.js') }}"></script>
 <script src="{{ asset('assets/libs/owlcarousel/owl.carousel.js') }}"></script>
+<script src="{{ asset('assets/libs/html2canvas/html2canvas.min.js') }}"></script>
 
 
 <script>

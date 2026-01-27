@@ -716,3 +716,28 @@ a {
 .highlight-word:hover {
   text-decoration: underline;
 }
+
+
+
+/* in vuvbulary glassy effect color  */
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
+  transition: all 0.3s ease;
+}
+
+/* Hover glow */
+.glass-card:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+/* .jpg-btn {
+  display: none;
+} */

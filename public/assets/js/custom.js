@@ -49,3 +49,38 @@ tinymce.init({
 $(document).ready(function() {
     $('.select2').select2();
 });
+
+
+
+
+function downloadSingleCard(btn) {
+    const card = btn.closest('.export-card');
+    if (!card) return;
+
+    // Prevent double click
+    btn.disabled = true;
+
+    // Get word for filename
+    const titleEl = card.querySelector('h6');
+    const fileName = titleEl
+        ? titleEl.innerText.trim().replace(/\s+/g, '_')
+        : 'word-card';
+
+    // Hide button
+    btn.style.visibility = 'hidden';
+
+    html2canvas(card, {
+        scale: window.devicePixelRatio * 2,
+        backgroundColor: '#ffffff',
+        useCORS: true
+    }).then(canvas => {
+        const link = document.createElement('a');
+        link.href = canvas.toDataURL('image/jpeg', 0.95);
+        link.download = fileName + '.jpg';
+        link.click();
+    }).finally(() => {
+        btn.style.visibility = 'visible';
+        btn.disabled = false;
+    });
+}
+
