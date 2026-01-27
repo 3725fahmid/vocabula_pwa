@@ -10,7 +10,7 @@
 
             <!-- Toggle Buttons -->
             <div class="btn-group btn-group-md" role="group">
-                <button class="btn btn-dark" id="btnEnglish">
+                <button class="btn btn-outline-dark" id="btnEnglish">
                     English
                 </button>
                 <button class="btn btn-outline-dark" id="btnBangla">

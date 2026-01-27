@@ -52,6 +52,7 @@ $(document).ready(function() {
 
 
 
+// Card download btn function 
 
 function downloadSingleCard(btn) {
     const card = btn.closest('.export-card');
