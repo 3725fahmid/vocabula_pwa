@@ -67,8 +67,8 @@
                                 <div class="col-12 col-lg-6">
                                     <a href="{{ route('moc_mcq') }}"
                                         class="text-decoration-none">
-                                        <div class="card mode-card h-100 rounded-4 border-0">
-                                            <div class="card-body p-4">
+                                        <div class="card mode-card rounded-4 border-0">
+                                            <div class="card-body">
 
                                                 <div class="mode-icon bg-warning bg-opacity-10 text-warning">
                                                     ✍️
@@ -96,8 +96,8 @@
                                 <div class="col-12 col-lg-6">
                                     <a href="{{ route('mcq') }}"
                                         class="text-decoration-none">
-                                        <div class="card mode-card h-100 rounded-4 border-0">
-                                            <div class="card-body p-4">
+                                        <div class="card mode-card rounded-4 border-0">
+                                            <div class="card-body">
 
                                                 <div class="mode-icon bg-warning bg-opacity-10 text-warning">
                                                     ✍️
