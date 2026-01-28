@@ -72,7 +72,7 @@
         <div class="d-flex">
             <div class="d-flex">
                 {{-- Dark mode btn --}}
-                <div class="dropdown d-inline-block ms-1">
+                {{-- <div class="dropdown d-inline-block ms-1">
                     <button type="button" class="btn header-item mt-2 noti-icon waves-effect">
                         <div class="checkbox-wrapper-54">
                             <label class="switch" for="mode-switch">
@@ -81,7 +81,22 @@
                             </label>
                         </div>
                     </button>
-                </div>
+                </div> --}}
+                {{-- Dark mode btn --}}
+                    <div class="dropdown d-inline-block ms-1">
+                        <button type="button" class="btn header-item noti-icon">
+                            <div class="theme-flip" id="mode-switch">
+                                <div class="flip-inner">
+                                    <div class="flip-face flip-front">
+                                        <i class="ri-sun-line"></i>
+                                    </div>
+                                    <div class="flip-face flip-back">
+                                        <i class="ri-moon-line"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </button>
+                    </div>
 
             </div>
 

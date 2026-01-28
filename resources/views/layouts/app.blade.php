@@ -150,32 +150,29 @@
 </script>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function () {
     const toggle = document.getElementById('mode-switch');
 
-    // Load saved preference from localStorage
     if (localStorage.getItem('darkMode') === 'enabled') {
         enableDarkMode();
-        toggle.checked = true;
+        toggle.classList.add('active');
     }
 
-    toggle.addEventListener('change', function () {
-        if (this.checked) {
-            localStorage.setItem('darkMode', 'enabled');
-        } else {
+    toggle.addEventListener('click', function () {
+        const isDark = localStorage.getItem('darkMode') === 'enabled';
+
+        if (isDark) {
             localStorage.setItem('darkMode', 'disabled');
+        } else {
+            localStorage.setItem('darkMode', 'enabled');
         }
-        location.reload(); // force reload to apply theme early
+
+        location.reload(); // keep your early-load behavior
     });
 
     function enableDarkMode() {
         loadStyle('bootstrap-dark', '{{ asset("assets/css/bootstrap-dark.min.css") }}');
         loadStyle('app-dark', '{{ asset("assets/css/app-dark.min.css") }}');
-    }
-
-    function disableDarkMode() {
-        removeStyle('bootstrap-dark');
-        removeStyle('app-dark');
     }
 
     function loadStyle(id, href) {
@@ -185,13 +182,6 @@
             link.href = href;
             link.id = id;
             document.head.appendChild(link);
-        }
-    }
-
-    function removeStyle(id) {
-        const link = document.getElementById(id);
-        if (link) {
-            link.remove();
         }
     }
 });
