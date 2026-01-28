@@ -69,7 +69,7 @@
                @yield('admin')
                 <!-- End Page-content -->
 
-                @include('partials.footer')
+                {{-- @include('partials.footer') --}}
 
 
             </div>

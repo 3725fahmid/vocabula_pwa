@@ -70,7 +70,7 @@
                 <!-- Header -->
                 <div class="offcanvas-header border-bottom">
                     <div class="d-flex align-items-center gap-3">
-                        <img src="{{ asset('assets/images/users/avatar-1.jpg') }}"
+                        <img src="{{ (!empty($userData->profile_image))? url('upload/user_images/'.$userData->profile_image):url('upload/no_image.jpg') }}"
                             class="rounded-circle"
                             width="48"
                             height="48"
