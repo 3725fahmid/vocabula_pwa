@@ -703,3 +703,35 @@ a {
 /* .jpg-btn {
   display: none;
 } */
+
+
+/* smoth right slider  */
+
+/* Smooth Offcanvas Animation */
+.user-offcanvas {
+  transition: transform 0.35s ease-in-out !important;
+  will-change: transform;
+}
+
+/* Optional: modern shadow */
+.user-offcanvas {
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Menu hover effect */
+.user-menu .list-group-item {
+  border: none;
+  padding: 14px 20px;
+  transition: background-color 0.2s ease, padding-left 0.2s ease;
+}
+
+.user-menu .list-group-item:hover {
+  background-color: #f8f9fa;
+  padding-left: 26px;
+  color: #111827;
+}
+
+/* Avatar */
+.header-profile-user {
+  object-fit: cover;
+}

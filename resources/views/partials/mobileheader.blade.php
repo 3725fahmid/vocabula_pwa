@@ -102,7 +102,6 @@
                         class="list-group-item list-group-item-action d-flex align-items-center gap-3">
                             <i class="ri-settings-2-line fs-5 text-success"></i>
                             <span>Settings</span>
-                            <span class="badge bg-success ms-auto">11</span>
                         </a>
 
                         <a href="#"
