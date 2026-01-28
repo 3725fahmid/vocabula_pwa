@@ -110,23 +110,67 @@
             @endphp
 
             <div class="dropdown d-none d-md-inline-block d-lg-inline-block user-dropdown">
-                <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
-                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="rounded-circle header-profile-user" src="{{ (!empty($userData->profile_image))? url('upload/user_images/'.$userData->profile_image):url('upload/no_image.jpg') }}"
-                        alt="Header Avatar">
-                    <span class="d-none d-xl-inline-block ms-1">{{ $userData->name }}</span>
-                    <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
-                </button>
-                <div class="dropdown-menu dropdown-menu-end">
-                    <!-- item-->
-                    <a class="dropdown-item" href="{{ route('profile') }}"><i class="ri-user-line align-middle me-1"></i> Profile</a>
-                    <a class="dropdown-item" href="{{ route('change.password') }}"><i class="ri-wallet-2-line align-middle me-1"></i> Change Password</a>
-                    <a class="dropdown-item d-block" href="{{url('setting')}}"><span class="badge bg-success float-end mt-1">11</span><i class="ri-settings-2-line align-middle me-1"></i> Settings</a>
-                    <a class="dropdown-item" href="#"><i class="ri-lock-unlock-line align-middle me-1"></i> Lock screen</a>
-                    <div class="dropdown-divider"></div>
+                <button class="btn header-item d-flex align-items-center gap-2"
+                        data-bs-toggle="offcanvas"
+                        data-bs-target="#userDrawer"
+                        aria-controls="userDrawer">
 
-                    <a class="dropdown-item text-danger" href="{{ route('logout') }}"><i class="ri-shut-down-line align-middle me-1 text-danger"></i> Logout</a>
+                    <img class="rounded-circle header-profile-user"
+                        src="{{ (!empty($userData->profile_image)) 
+                                ? url('upload/user_images/'.$userData->profile_image) 
+                                : url('upload/no_image.jpg') }}"
+                        alt="Avatar"
+                        width="36" height="36">
+                </button>
+
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="userDrawer">
+                    <div class="offcanvas-header border-bottom">
+                        <div class="d-flex align-items-center gap-3">
+                            <img src="{{ (!empty($userData->profile_image)) 
+                                        ? url('upload/user_images/'.$userData->profile_image) 
+                                        : url('upload/no_image.jpg') }}"
+                                class="rounded-circle"
+                                width="48" height="48">
+
+                            <div>
+                                <h6 class="mb-0">{{ $userData->first_name }}</h6>
+                                <small class="text-muted">{{ $userData->user_email ?? 'User Account' }}</small>
+                            </div>
+                        </div>
+
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+                    </div>
+
+                    <div class="offcanvas-body p-0">
+                        <div class="list-group list-group-flush user-menu">
+                            <a href="{{ route('profile') }}" class="list-group-item">
+                                <i class="ri-user-line me-2"></i> Profile
+                            </a>
+
+                            <a href="{{ route('change.password') }}" class="list-group-item">
+                                <i class="ri-lock-password-line me-2"></i> Change Password
+                            </a>
+
+                            <a href="{{ url('setting') }}" class="list-group-item d-flex justify-content-between align-items-center">
+                                <span>
+                                    <i class="ri-settings-2-line me-2"></i> Settings
+                                </span>
+                                <span class="badge bg-success rounded-pill">11</span>
+                            </a>
+
+                            <a href="#" class="list-group-item">
+                                <i class="ri-lock-unlock-line me-2"></i> Lock Screen
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="offcanvas-footer border-top p-3">
+                        <a href="{{ route('logout') }}" class="btn btn-danger w-100">
+                            <i class="ri-shut-down-line me-1"></i> Logout
+                        </a>
+                    </div>
                 </div>
+
             </div>
         </div>
 

@@ -57,8 +57,6 @@
                 aria-controls="userBottomDrawer">
                 <img class="rounded-circle header-profile-user" src="{{ (!empty($userData->profile_image))? url('upload/user_images/'.$userData->profile_image):url('upload/no_image.jpg') }}"
                     alt="Header Avatar">
-                <span class="d-none d-xl-inline-block ms-1">{{ $userData->name }}</span>
-                <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
             </button>
             <div
                 class="offcanvas offcanvas-bottom rounded-top"
@@ -76,8 +74,8 @@
                             height="48"
                             alt="User">
                         <div>
-                            <h6 class="mb-0 fw-semibold">{{ auth()->user()->name ?? 'User' }}</h6>
-                            <small class="text-muted">{{ auth()->user()->email ?? '' }}</small>
+                            <h6 class="mb-0 fw-semibold">{{ auth()->user()->first_name ?? 'User' }}</h6>
+                            <small class="text-muted">{{ auth()->user()->user_email ?? '' }}</small>
                         </div>
                     </div>
 
