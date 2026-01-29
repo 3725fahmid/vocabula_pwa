@@ -10,8 +10,10 @@
         <meta content="Themesdesign" name="author" />
         <meta name="_token" content="{{ csrf_token() }}">
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.css" >
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-        <!-- App favicon -->
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/libs/toastr/build/toastr.min.css') }}">
+
+        <!-- Bootstrap Css -->
+        <link href="{{ asset('assets/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />        <!-- App favicon -->
         {{-- <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}"> --}}
         <link rel="shortcut icon" href="{{ asset('assets/images/logo-light-sm.svg') }}">
 
@@ -34,6 +36,10 @@
 
         <!-- Icons Css -->
         <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+
+        {{-- sweetalert2 --}}
+         <!-- Sweet Alert-->
+        <link href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
         
       
 
@@ -41,7 +47,7 @@
         <!-- custom Css-->
         <link href="{{ asset('assets/css/fh-custom.css') }}" rel="stylesheet" type="text/css" />
 
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/libs/toastr/build/toastr.css') }}" >
 
     </head>
 
@@ -122,8 +128,17 @@
         <script src="{{ asset('assets/js/app.js') }}"></script>
         <!-- custom js:razib.dev -->
         <script src="{{ asset('assets/js/custom.js') }}"></script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+        <!-- Sweet Alerts js -->
+        <script src="{{ asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
+
+        <!-- Sweet alert init js-->
+        <script src="{{ asset('assets/js/pages/sweet-alerts.init.js') }}"></script>
+        <!-- toastr plugin -->
+        <script src="{{ asset('assets/libs/toastr/build/toastr.min.js') }}"></script>
+
+        <!-- toastr init -->
+        <script src="{{ asset('assets/js/pages/toastr.init.js') }}"></script>
+
         <script src="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.min.js" ></script>
         
 <script>

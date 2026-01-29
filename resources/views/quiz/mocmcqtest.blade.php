@@ -109,7 +109,6 @@
 @endsection
 
 @section('scripts')
-<script src="{{ asset('assets/libs/sweetalert2/sweeralert2.min.js') }}"></script>
 
 <style>
 .option-box {
