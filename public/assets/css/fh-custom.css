@@ -114,7 +114,25 @@ a {
   }
 }
 
-/* Custom Mobile Footer Bar Start */
+
+/* 
+  owl-carousel section 
+  custom design start
+
+*/
+
+.bg-gradient-owl-carousel {
+  background: radial-gradient(circle at 20% 20%,
+      hsl(190 80% 50% / 0.15),
+      transparent 40%),
+    radial-gradient(circle at 80% 80%, hsl(280 70% 50% / 0.15), transparent 40%),
+    hsl(230 20% 7%);
+  border-radius: 20px;
+}
+
+.bg-gradient-owl-carousel h5 {
+  color: hsl(190 95% 55%);
+}
 
 
 /* Animation Card design  */
@@ -159,8 +177,8 @@ a {
 }
 
 .card__face--front {
-  background: linear-gradient(135deg, #2b72af, #237f84);
-  color: #ffffff;
+  color: #96fbc4;
+  background-image: linear-gradient(to top, #00ff7321 0%, #03466c1d 100%);
 }
 
 /* For dark background  */
@@ -176,10 +194,15 @@ a {
 
 .card__face--back {
   transform: rotateY(180deg);
-  background: linear-gradient(135deg, #3d9f5d, #22937e);
+  background: hsl(205, 96%, 11%);
   color: #d1fef2;
 }
 
+/* 
+  owl-carousel section 
+  custom design end
+
+*/
 
 
 
@@ -266,25 +289,109 @@ that card can download user like flash card
 
 */
 
+.bg-gradient-words-area {
+  background-image: linear-gradient(to top, #96fbc4 0%, #f9f586 100%);
+}
 
 /* in vuvbulary glassy effect color  */
 
-.glass-card {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
-  transition: all 0.3s ease;
+
+
+.word-photo-card {
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.5);
+  max-width: 400px;
+  display: flex;
+  flex-direction: row;
+  border-radius: 20px;
+  position: relative;
 }
 
-/* Hover glow */
-.glass-card:hover {
-  transform: translateY(-4px);
-  background: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+.word-photo-card h2 {
+  margin: 0;
+  padding: 0 1rem;
 }
+
+.word-photo-card .title {
+  padding: 1rem;
+  text-align: right;
+  color: green;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.word-photo-card .desc {
+  padding: 0.5rem 1rem;
+  font-size: 12px;
+}
+
+.word-photo-card .actions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  padding: 0.5rem 1rem;
+}
+
+.word-photo-card svg {
+  width: 85px;
+  height: 85px;
+  margin: 0 auto;
+}
+
+.img-avatar {
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  border-radius: 50%;
+  border: 6px solid white;
+  background-image: linear-gradient(-60deg, #16a085 0%, #f4d03f 100%);
+  top: 15px;
+  left: 85px;
+}
+
+.word-photo-card-text {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+.title-total {
+  padding: 2.5em 1.5em 1.5em 1.5em;
+}
+
+path {
+  fill: white;
+}
+
+.img-portada {
+  width: 100%;
+}
+
+.portada {
+  width: 100%;
+  height: 100%;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  background-image: url("https://m.media-amazon.com/images/S/aplus-media/vc/cab6b08a-dd8f-4534-b845-e33489e91240._CR75,0,300,300_PT0_SX300__.jpg");
+  background-position: bottom center;
+  background-size: cover;
+}
+
+.word-photo-card button {
+  border: none;
+  background: none;
+  font-size: 24px;
+  color: #8bc34a;
+  cursor: pointer;
+  transition: .5s;
+
+  &:hover {
+    color: #4CAF50;
+    transform: rotate(22deg)
+  }
+}
+
+
 
 
 /* End flase vucabulary card  */

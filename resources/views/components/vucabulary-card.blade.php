@@ -1,4 +1,4 @@
-<div class="glass-card h-100 p-3 text-center export-card">
+<div class="glass-card h-100 p-3 text-center ">
 
     <h6 class="fw-bold mb-2 text-dark">
         {{ $item['word'] }}
