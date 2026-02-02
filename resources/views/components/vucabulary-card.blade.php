@@ -30,7 +30,9 @@
             <div class="word-photo-card-text py-2 mt-5">
                 <div class="title-total">   
                     <div class="title">Ant Collector</div>
-                    <h2>{{ $item['word'] }} ({{ $item['wordmeaning'] }})</h2>
+                    <h4>{{ $item['word'] }}</h4>
+                    <hr>
+                    <h2>{{ $item['wordmeaning'] }}</h2>
             
                     <div class="desc">{{ $item['wordmeaning'] }}</div>
                     <div class="actions">

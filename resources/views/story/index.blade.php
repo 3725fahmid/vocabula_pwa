@@ -128,7 +128,7 @@
                             <div class="card-body">
                                 <div class="row g-3">
                                     @foreach($words as $story)
-                                        <div class="col-1 col-md-2 col-lg-4 mb-3 d-flex">
+                                        <div class="col-12 col-md-6 col-lg-4 col-xl-4 mb-3 d-flex">
 
                                             <x-vucabulary-card :item="$story"/>
 

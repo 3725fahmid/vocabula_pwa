@@ -232,7 +232,8 @@ that card can download user like flash card
   border-radius: 10px 10px 0 0;
 }
 
-.word-photo-card h2 {
+.word-photo-card h2,
+.word-photo-card h4 {
   margin: 0;
   padding: 0 1rem;
   color: green;

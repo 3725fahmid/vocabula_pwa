@@ -62,7 +62,7 @@ function downloadSingleCard(btn) {
     btn.disabled = true;
 
     // Get word for filename
-    const titleEl = card.querySelector('h6');
+    const titleEl = card.querySelector('h4');
     const fileName = titleEl
         ? titleEl.innerText.trim().replace(/\s+/g, '_')
         : 'word-card';
