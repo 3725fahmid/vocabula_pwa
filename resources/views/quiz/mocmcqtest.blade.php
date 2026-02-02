@@ -244,6 +244,28 @@ $(function () {
         $("input[type=radio]").prop("disabled", true);
         $(this).prop("disabled", true);
 
+
+        // console.log(score,total,percent);
+
+        $.ajax({
+            // url: "/quiz/save-score", // route URL
+            url: '#',
+            method: "POST",
+            data: {
+                score: score,
+                total: total,
+                percent: percent,
+                _token: $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(response) {
+                console.log("Saved:", response);
+            },
+            error: function(xhr) {
+                console.error("Error saving score");
+            }
+        });
+        
+
     });
 
 });
