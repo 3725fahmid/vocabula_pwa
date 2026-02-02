@@ -111,17 +111,33 @@
                 <!-- GRID WORD LIST -->
                 <div class="card border-0 shadow-sm rounded-4">
                     <div class="card-body p-4">
-                        <h5 class="fw-bold mb-4">📘 Word List</h5>
-                        <div class="row g-3">
-                            @foreach($words as $story)
-                                <div class="col-6 col-md-4 col-lg-2 mb-3">
+                        <a href="#word_list" class="text-dark" data-bs-toggle="collapse"
+                                        aria-expanded="false"
+                                        aria-controls="collapseOne">
+                            <div class="card-header" id="headingOne">
+                                <h6 class="m-0">
+                                    📘 Word List
+                                    <i class="mdi mdi-minus float-end accor-plus-icon"></i>
+                                </h6>
+                            </div>
+                        </a>
 
-                                    <x-vucabulary-card :item="$story"/>
+                        <div id="word_list" class="collapse"
+                                aria-labelledby="headingOne" data-bs-parent="#accordion">
+                            <div class="card-body">
+                                <div class="row g-3">
+                                    @foreach($words as $story)
+                                        <div class="col-6 col-md-4 col-lg-2 mb-3">
+
+                                            <x-vucabulary-card :item="$story"/>
+
+                                        </div>
+                                    @endforeach
 
                                 </div>
-                            @endforeach
-
-                    </div>
+                            </div>
+                        </div>
+                        
                 </div>
             </div>
         </div>
