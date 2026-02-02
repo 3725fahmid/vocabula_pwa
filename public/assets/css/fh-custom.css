@@ -19,363 +19,18 @@ a {
   color: #5c5c5c;
 }
 
-
-#sidebar-menu ul li a {
-  font-size: 15px !important;
-}
-
-#sidebar-menu ul li a:hover {
-  background-color: rgba(125, 147, 178, 0.24);
-}
-
-
-/* Expenses btn custom design  */
-/* CSS */
-.expense_btn {
-  align-items: center;
-  background-image: linear-gradient(144deg, #AF40FF, #5B42F3 50%, #00DDEB);
-  border: 0px;
-  box-sizing: border-box;
-  color: #FFFFFF !important;
-  display: flex;
-  font-family: Phantomsans, sans-serif;
-  font-size: 16px;
-  justify-content: center;
-  max-width: 100%;
-  min-width: 100%;
-  text-decoration: none;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  white-space: nowrap;
-  cursor: pointer;
-}
-
-.expense_btn i {
-  color: #ffffff !important;
-}
-
-.expense_btn:active,
-.expense_btn:hover {
-  background: linear-gradient(244deg, #AF40FF, #5B42F3 50%, #00DDEB);
-}
-
-/* End expenses custom btn design  */
-
-
-/* post */
 .pagination {
   align-items: center;
   justify-content: center;
 }
 
 
-/* media */
-.image-block-wrapper {
-  margin-left: -1%;
-}
-
-.image-block {
-  width: 8%;
-  height: 120px;
-  margin-left: 1%;
-  float: left;
-  margin-bottom: 1%;
-}
-
-.image-block:hover {
-  border: 1px solid #ddd;
-  cursor: pointer;
-}
-
-.modal-header {
-  box-shadow: 0px 8px 15px 0px rgba(125, 147, 178, 0.24)
-}
-
-;
-
-.image-block-large {
-  width: 100%;
-  height: 800px;
-  box-shadow: 0px 8px 15px 0px rgba(125, 147, 178, 0.24)
-}
-
-.image-block-large img {
-  width: 100%;
-  height: 780px;
-  object-fit: contain;
-}
-
-.image-sidebar {
-  height: 100%;
-  width: 100%;
-  box-shadow: 0px 8px 15px 0px rgba(125, 147, 178, 0.24);
-  padding: 30px;
-}
-
-.image-sidebar ul {
-  padding: 0;
-}
 
 
 
-/* Expense page css */
+/* Dark mood css Start  */
 
-.expense-item .row,
-.expense-box {
-  background-color: rgb(178, 185, 202);
-  border: 2px solid rgb(238, 238, 238);
-  margin-bottom: 20px;
-  padding: 10px;
-  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-  font-weight: 700;
-  font-size: 16px;
-  color: #000;
-}
-
-
-
-/* Welcome page custom design  */
-
-.w-front-view {
-  background-color: #e6ecf1;
-  width: 100%;
-  height: 100vh;
-  overflow-x: hidden;
-}
-
-.w-front-view .w-inner-view {
-  display: flex;
-}
-
-.w-front-view .w-cover {
-  width: 100%;
-  height: 100vh;
-}
-
-.w-cover .w-nav {
-  width: 100%;
-  background-color: transparent;
-  height: 65px;
-  margin-bottom: 15px;
-  padding: 10px;
-  overflow: hidden;
-}
-
-.w-cover .w-nav .w-logo {}
-
-.w-auth {
-  float: right;
-  position: relative;
-  padding: 0px;
-  margin: 0px;
-  width: 80px;
-  height: 100vh;
-}
-
-.w-auth .w-registration {
-  width: 100%;
-  height: 50vh;
-
-}
-
-.w-auth .w-dashboard a {
-  background-color: #f56b07;
-  color: #ffffff;
-}
-
-.w-auth .w-dashboard {
-  width: 100%;
-  height: 100vh;
-}
-
-.w-auth .w-login {
-  width: 100%;
-  height: 50vh;
-
-}
-
-.w-auth .w-login a {
-  background-color: #f7e9c2;
-  color: #f56b07;
-}
-
-.w-auth .w-registration a {
-  background-color: #f56b07;
-  color: #ffffff;
-}
-
-.w-auth a {
-  width: 100%;
-  height: 100%;
-  display: inline-block;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid #ddd;
-
-}
-
-.w-auth a span {
-  font-size: 20px;
-  font-weight: 900;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  transform: rotate(270deg);
-}
-
-.w-content .welcome-space {
-  margin-top: 300px;
-}
-
-.w-content .welcome-space h1 {
-  font-family: "Inter";
-  font-size: 44px;
-  font-weight: 700;
-  color: #f56b07;
-  text-transform: uppercase;
-  margin-bottom: 20px;
-}
-
-.w-content .welcome-space p {
-  font-family: "Inter";
-  font-size: 14px;
-  font-weight: 400;
-  color: #642a00;
-  margin-bottom: 10px;
-}
-
-.w-img-box {
-  width: 75%;
-  height: 300px;
-  background-color: #642a00;
-  border-radius: 10px;
-}
-
-#datatable-buttons_paginate {
-  display: none;
-}
-
-.info-btn-group {
-  display: flex;
-  align-items: center;
-}
-
-.info-btn-group a {
-  padding: 10px 25px;
-  display: inline-block;
-  background-color: #f56b07;
-  color: #f7c19a;
-  border-radius: 5px;
-  border: 3px solid #fff;
-
-}
-
-.custom-btn {
-  width: 75%;
-  height: 40px;
-  color: #fff;
-  border-radius: 5px;
-  padding: 10px 25px;
-  font-family: 'Lato', sans-serif;
-  font-weight: 500;
-  background: transparent;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  display: inline-block;
-  box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5),
-    7px 7px 20px 0px rgba(0, 0, 0, .1),
-    4px 4px 5px 0px rgba(0, 0, 0, .1);
-  outline: none;
-}
-
-
-.btn-7 {
-  position: relative;
-  background: linear-gradient(135deg, #ff9800, #fb4b02);
-  line-height: 42px;
-  padding: 0 28px;
-  border: none;
-  border-radius: 6px;
-  color: #fff;
-  font-weight: 600;
-  letter-spacing: .3px;
-  cursor: pointer;
-  transition: background .3s ease, color .3s ease;
-}
-
-.btn-7 span {
-  position: relative;
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-/* shared line style */
-.btn-7:before,
-.btn-7:after,
-.btn-7 span:before,
-.btn-7 span:after {
-  content: "";
-  position: absolute;
-  background: #fb4b02;
-  transition: all .35s ease;
-}
-
-/* right & bottom */
-.btn-7:before {
-  right: 0;
-  bottom: 0;
-  width: 2px;
-  height: 0%;
-}
-
-.btn-7:after {
-  right: 0;
-  bottom: 0;
-  width: 0%;
-  height: 2px;
-}
-
-/* left & top */
-.btn-7 span:before {
-  left: 0;
-  top: 0;
-  width: 2px;
-  height: 0%;
-}
-
-.btn-7 span:after {
-  left: 0;
-  top: 0;
-  height: 2px;
-  width: 0%;
-}
-
-/* hover */
-.btn-7:hover {
-  background: transparent;
-  color: #fb4b02;
-}
-
-.btn-7:hover:before,
-.btn-7 span:hover:before {
-  height: 100%;
-}
-
-.btn-7:hover:after,
-.btn-7 span:hover:after {
-  width: 100%;
-}
-
-
-/* Dark mood css end  */
-
-
-
-/* theme-mode  */
+/* theme-mode */
 .theme-flip {
   width: 36px;
   height: 36px;
@@ -389,6 +44,7 @@ a {
   position: relative;
   transform-style: preserve-3d;
   transition: transform 0.6s cubic-bezier(.4, .2, .2, 1);
+  will-change: transform;
 }
 
 .theme-flip.active .flip-inner {
@@ -402,104 +58,31 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
+
   backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+
   font-size: 18px;
 }
 
+/* Front */
 .flip-front {
   color: #111827;
+  transform: rotateY(0deg) translateZ(1px);
 }
 
+/* Back */
 .flip-back {
   color: #e5e7eb;
-  transform: rotateY(180deg);
+  transform: rotateY(180deg) translateZ(1px);
 }
 
 
-
-
-
-
-
-
-
-/* This is for new app */
-.gradient-border {
-  position: relative;
-  border-radius: 5px;
-  /* cursor: pointer; */
-}
-
-/* hidden by default */
-.gradient-border::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  padding: 3px;
-  /* border thickness */
-  border-radius: inherit;
-
-  background: linear-gradient(135deg,
-      #6a54e8,
-      #54c6e8,
-      #6a54e8);
-  background-size: 300% 300%;
-
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-/* show + animate on hover */
-.gradient-border:hover::before {
-  opacity: 1;
-  animation: borderMove 3s linear infinite;
-}
-
-/* animation */
-@keyframes borderMove {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  100% {
-    background-position: 100% 50%;
-  }
-}
-
-
-
-.story-card .story-header {
-  padding: 0 20px 10px;
-}
-
-.story-card .story-header h2 {
-  font-size: 22px;
-  font-weight: bold;
-  line-height: 24px;
-  margin: 0;
-}
-
-.story-card .story-content {
-  margin: 0;
-  padding: 0 20px 5px;
-}
-
-.story-card .story-content p {
-  font-size: 18px;
-  line-height: 23px;
-  font-weight: 600;
-  color: #f37005;
-}
+/* Dark mood css end  */
 
 
 /* Footer  */
-.custom-footer {
+/* .custom-footer {
   bottom: 0;
   padding: 20px calc(24px / 2);
   position: absolute;
@@ -510,16 +93,13 @@ a {
   -webkit-box-shadow: -1px 0px 20px rgba(0, 0, 0, 0.05);
   box-shadow: -1px 0px 20px rgba(0, 0, 0, 0.05);
   background-color: #fff;
-}
+} */
 
 
 
+/* Custom Mobile Footer Bar Start */
 
 @media (max-width: 765px) {
-  .story-card .card-body {
-    padding: 35px 0;
-    text-align: center;
-  }
 
   #footer-bar {
     position: fixed;
@@ -534,51 +114,11 @@ a {
   }
 }
 
+/* Custom Mobile Footer Bar Start */
+
 
 /* Animation Card design  */
 
-.card-flip {
-  width: 300px;
-  height: 300px;
-  perspective: 500px;
-}
-
-.card-flip .content {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-  transition: transform 1s;
-  transform-style: preserve-3d;
-}
-
-.card-flip:hover .content {
-  transform: rotateY(180deg);
-  transition: transform 0.5s;
-}
-
-.front,
-.back {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  background: rgb(230, 230, 231);
-  line-height: 300px;
-  color: #03446A;
-  text-align: center;
-  font-size: 60px;
-  border-radius: 5px;
-  backface-visibility: hidden;
-}
-
-.back {
-  background: #03446A;
-  color: white;
-  transform: rotateY(180deg);
-}
-
-
-/* 2nd animation card  */
 .scene {
   width: 100%;
   height: 200px;
@@ -681,31 +221,12 @@ a {
 
 
 
-/* in vuvbulary glassy effect color  */
+/* 
 
-.glass-card {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
-  transition: all 0.3s ease;
-}
+smoth right slider  
+offcanvas use for right silide menu
 
-/* Hover glow */
-.glass-card:hover {
-  transform: translateY(-4px);
-  background: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-}
-
-/* .jpg-btn {
-  display: none;
-} */
-
-
-/* smoth right slider  */
+*/
 
 /* Smooth Offcanvas Animation */
 .user-offcanvas {
@@ -735,3 +256,35 @@ a {
 .header-profile-user {
   object-fit: cover;
 }
+
+
+
+
+/* 
+Vucabulary card and background design 
+that card can download user like flash card
+
+*/
+
+
+/* in vuvbulary glassy effect color  */
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
+  transition: all 0.3s ease;
+}
+
+/* Hover glow */
+.glass-card:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+
+/* End flase vucabulary card  */
