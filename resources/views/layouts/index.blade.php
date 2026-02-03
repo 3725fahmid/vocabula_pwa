@@ -24,14 +24,22 @@
         </div>
 
         {{-- 📚 Story Feed --}}
-        @foreach ($storyData as $story)
-            @isset($story['story_id'])
-                <x-story-card :item="$story"/>
-            @endisset
-        @endforeach
+        <div id="storyFeed">
+            @foreach ($storyData as $story)
+                @isset($story['story_id'])
+                    <x-story-card :item="$story"/>
+                @endisset
+            @endforeach
+        </div>
 
-        <div class="mt-4">
+        {{-- Pagination (hidden but used for infinite scroll) --}}
+        <div id="paginationLinks" class="d-none">
             {{ $storyData->links() }}
+        </div>
+
+        {{-- Loader --}}
+        <div id="scrollLoader" class="text-center my-4 d-none">
+            <div class="spinner-border"></div>
         </div>
 
     </div>
@@ -63,14 +71,13 @@
 }
 </style>
 
-
 <script>
+/* ================= SEARCH ================= */
 const input   = document.getElementById('storySearch');
 const results = document.getElementById('searchResults');
 const clear   = document.getElementById('clearSearch');
 let controller;
 
-/* 🔎 Search handler */
 input.oninput = () => {
     const q = input.value.trim();
     clear.classList.toggle('d-none', !q);
@@ -87,19 +94,16 @@ input.oninput = () => {
     .then(renderResults);
 };
 
-/* 🧹 Clear */
 clear.onclick = () => {
     input.value = '';
     input.focus();
     hideResults();
 };
 
-/* 🖱️ Outside click */
 document.onclick = e => {
     if (!e.target.closest('.search-wrapper')) hideResults();
 };
 
-/* Helpers */
 function hideResults() {
     results.classList.add('d-none');
     results.innerHTML = '';
@@ -108,15 +112,15 @@ function hideResults() {
 function renderResults(items) {
     results.innerHTML = items.length
         ? items.map(item => {
-            // Get first 30 words of item.english
             const shortEnglish = item.english.split(' ').slice(0, 30).join(' ');
-            // Add ellipsis if text was longer
-            const displayEnglish = item.english.split(' ').length > 30 ? shortEnglish + '...' : shortEnglish;
+            const displayEnglish = item.english.split(' ').length > 30
+                ? shortEnglish + '...'
+                : shortEnglish;
 
             return `
                 <a class="list-group-item"
                    href="/story/${item.story_id}">
-                   <strong>${item.story_id} . ${item.title}</strong>
+                   <strong>${item.story_id}. ${item.title}</strong>
                    <div class="small text-muted">${displayEnglish}</div>
                 </a>
             `;
@@ -126,5 +130,43 @@ function renderResults(items) {
     results.classList.remove('d-none');
 }
 
+/* ================= INFINITE SCROLL ================= */
+let page = 1;
+let loading = false;
+let lastPage = {{ $storyData->lastPage() }};
+
+window.addEventListener('scroll', () => {
+    if (loading || page >= lastPage) return;
+
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 200) {
+        loadMoreStories();
+    }
+});
+
+function loadMoreStories() {
+    loading = true;
+    page++;
+
+    document.getElementById('scrollLoader').classList.remove('d-none');
+
+    fetch(`?page=${page}`, {
+        headers: { 'X-Requested-With': 'XMLHttpRequest' }
+    })
+    .then(res => res.text())
+    .then(html => {
+        const temp = document.createElement('div');
+        temp.innerHTML = html;
+
+        const newStories = temp.querySelectorAll('#storyFeed > *');
+
+        newStories.forEach(story => {
+            document.getElementById('storyFeed').appendChild(story);
+        });
+    })
+    .finally(() => {
+        loading = false;
+        document.getElementById('scrollLoader').classList.add('d-none');
+    });
+}
 </script>
 @endsection
