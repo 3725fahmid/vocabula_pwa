@@ -110,7 +110,7 @@
             <div class="col-12">
                 <!-- MODERN WORD LIST -->
                 <!-- GRID WORD LIST -->
-                <div class="card border-0 shadow-sm rounded-4 bg-gradient-words-area">
+                <div class="card border-0 shadow-sm rounded-4  bg-gradient-words-area">
                     <div class="card-body p-4">
                         <a href="#word_list" class="text-dark" data-bs-toggle="collapse"
                                         aria-expanded="false"
@@ -138,13 +138,10 @@
                                 </div>
                             </div>
                         </div>
-                        
+                    </div>   
                 </div>
             </div>
-        </div>
-        <!-- Vocabulary carousel Section -->
-        
-        <div class="row g-3">
+            <!-- Vocabulary carousel Section -->
             <div class="col-12">
                 <div class="card border-0 shadow-sm rounded-4 bg-gradient-owl-carousel">
                     <div class="card-body px-4 py-4">
@@ -203,14 +200,14 @@
                                                     @endforeach
                                                 </div>
                                             </div>
-
+    
                                             <div class="card">
                                                 <div class="card-body">
                                                     <h5 class="fw-semibold mb-2">Tactic / Memory Tip</h5>
                                                     {{ $item['tactic'] }}
                                                 </div>
                                             </div>
-
+    
                                             <div class="card">
                                                 <div class="card-body rounded-4">
                                                     <h5 class="fw-semibold mb-2">Example</h5>
@@ -221,7 +218,7 @@
                                         </div>
                                     </div>
                                 </div> --}}
-
+    
                                 <p class="w-100">
                                     <a class="btn btn-dark custom-collapse-icon w-100 d-flex justify-content-between" data-bs-toggle="collapse" href="#collapse{{ $item['id'] }}" role="button" aria-expanded="false" aria-controls="collapseExample">
                                         <span class="d-block">See more</span>
@@ -251,14 +248,14 @@
                                                     @endforeach
                                                 </div>
                                             </div>
-
+    
                                             <div class="card">
                                                 <div class="card-body">
                                                     <h5 class="fw-semibold mb-2">Tactic / Memory Tip</h5>
                                                     {{ $item['tactic'] }}
                                                 </div>
                                             </div>
-
+    
                                             <div class="card">
                                                 <div class="card-body rounded-4">
                                                     <h5 class="fw-semibold mb-2">Example</h5>
@@ -266,9 +263,9 @@
                                                 </div>
                                             </div>
                                 </div>
-
-
-
+    
+    
+    
                             </div> 
                             @endforeach                   
                         </div>
@@ -276,6 +273,8 @@
                 </div>
             </div>
         </div>
+        
+
 
 
         {{-- "id" => "6"

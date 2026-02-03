@@ -29,7 +29,7 @@
             </div>
             <div class="word-photo-card-text py-2 mt-5">
                 <div class="title-total">   
-                    <div class="title">Ant Collector</div>
+                    <div class="title">Word Collector</div>
                     <h4>{{ $item['word'] }}</h4>
                     <hr>
                     <h2>{{ $item['wordmeaning'] }}</h2>
