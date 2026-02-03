@@ -269,6 +269,16 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Quiz test  -->
+            <div class="col-12">
+                    <a href="{{ route('quiz.show', $story['story_id']) }}"
+                        class="text-decoration-none w-100">
+                    
+                        <button class="btn btn-lg w-100 btn-dark">Start Quiz</button>
+
+                    </a>
+                </div>
         </div>
         
 

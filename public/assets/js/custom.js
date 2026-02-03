@@ -76,8 +76,8 @@ function downloadSingleCard(btn) {
         useCORS: true
     }).then(canvas => {
         const link = document.createElement('a');
-        link.href = canvas.toDataURL('image/jpeg', 0.95);
-        link.download = fileName + '.jpg';
+        link.href = canvas.toDataURL('image/png', 0.95);
+        link.download = fileName + '.png';
         link.click();
     }).finally(() => {
         btn.style.visibility = 'visible';
