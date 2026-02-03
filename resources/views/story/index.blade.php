@@ -111,7 +111,7 @@
                 <!-- MODERN WORD LIST -->
                 <!-- GRID WORD LIST -->
                 <div class="card border-0 shadow-sm rounded-4  bg-gradient-words-area">
-                    <div class="card-body p-4">
+                    <div class="card-body p-2">
                         <a href="#word_list" class="text-dark" data-bs-toggle="collapse"
                                         aria-expanded="false"
                                         aria-controls="collapseOne">
@@ -125,17 +125,14 @@
 
                         <div id="word_list" class="collapse"
                                 aria-labelledby="headingOne" data-bs-parent="#accordion">
-                            <div class="card-body">
-                                <div class="row g-3">
-                                    @foreach($words as $story)
-                                        <div class="col-12 col-md-6 col-lg-4 col-xl-4 mb-3 d-flex">
+                            <div class="row">
+                                @foreach($words as $story)
+                                    <div class="col-12 col-md-6 col-lg-4 col-xl-4 mb-3 d-flex">
 
-                                            <x-vucabulary-card :item="$story"/>
+                                        <x-vucabulary-card :item="$story"/>
 
-                                        </div>
-                                    @endforeach
-
-                                </div>
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>   

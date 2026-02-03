@@ -311,6 +311,9 @@ path {
   custom design start
 
 */
+.owl-theme .owl-dots {
+  display: none;
+}
 
 .bg-gradient-owl-carousel {
   background: radial-gradient(circle at 20% 20%,
