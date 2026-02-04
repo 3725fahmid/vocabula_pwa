@@ -15,13 +15,13 @@
     <a href="{{ route('home') }}" class="btn btn-dark fw-semibold text-decoration-none mb-2">
         ← Back to Home
     </a>
-    <div class="card border-0 shadow-sm rounded-4 mb-4 filter-card">
+    <div class="card bg-transparent border-2 shadow-md rounded-4 mb-4 filter-card">
         <div class="card-body px-4 py-3">
             <div class="row align-items-center g-3">
 
                 <!-- Text -->
                 <div class="col-lg-6">
-                    <h6 class="mb-1 fw-semibold text-dark">
+                    <h6 class="mb-1 fw-semibold">
                         Filter Stories
                     </h6>
                     <small class="text-muted">
@@ -31,23 +31,30 @@
 
                 <!-- Filter -->
                 <div class="col-lg-6">
-                    <form action="" method="GET" class="d-flex gap-2">
-                        
-                        <select id="categoryFilter" class="form-select rounded px-4">
+                    <form method="GET">
+                        <div class="input-group shadow-sm rounded-4 overflow-hidden">
+                            <span class="input-group-text bg-info border-0 px-3">
+                                <i class="fas fa-filter text-white"></i>
+                            </span>
+
+                            <select 
+                                id="categoryFilter"
+                                class="form-select border-0 px-4"
+                            >
                                 @foreach($categories as $cat)
-                                    <option value="{{ $cat }}">
+                                    <option 
+                                        value="{{ $cat }}"
                                         {{ $cat === $category ? 'selected' : '' }}
+                                    >
                                         {{ ucfirst($cat) }}
                                     </option>
                                 @endforeach
-                        </select>
-
-                        {{-- <button type="submit"
-                                class="btn btn-dark rounded px-4 fw-semibold">
-                            Filter
-                        </button> --}}
+                            </select>
+                        </div>
                     </form>
                 </div>
+
+
 
             </div>
         </div>

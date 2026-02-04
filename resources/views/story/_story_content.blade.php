@@ -1,4 +1,4 @@
-<div class="card border-0 shadow-sm rounded-4 mb-5" 
+<div class="card bg-transparent border-2 shadow-md rounded-4 mb-5" 
     data-active-lang="{{ $language ?? 'en' }}">
     <div class="card-body px-4 px-md-5 py-4">
 
@@ -20,7 +20,7 @@
         </div>
 
         <!-- ENGLISH VERSION -->
-        <div id="englishStory" class="story-content fs-5 lh-lg text-dark">
+        <div id="englishStory" class="story-content fs-5 lh-lg text-muted">
             @foreach(explode("\n\n", $story['english'] ?? '') as $paragraph)
                 <p class="mb-4 selectable-text">
                     {{ $paragraph }}
