@@ -14,7 +14,7 @@
         <!-- Bootstrap Css -->
         <link href="{{ asset('assets/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />        <!-- App favicon -->
         {{-- <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}"> --}}
-        <link rel="shortcut icon" href="{{ asset('assets/images/logo-light-sm.svg') }}">
+        <link rel="shortcut icon" href="{{ asset('assets/images/sg-vector.svg') }}">
 
         <script>
             (function() {

@@ -3,8 +3,8 @@
 @section('title', 'Home Feed')
 
 @section('admin')
-<div class="page-content">
-    <div class="container" style="max-width:880px">
+<div class="page-content d-flex align-items-center justify-content-center">
+    <div class="" style="max-width:880px">
 
         {{-- 🔍 Search --}}
         <div class="search-wrapper mb-4 position-relative">

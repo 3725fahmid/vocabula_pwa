@@ -9,7 +9,7 @@
         <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
         <meta content="Themesdesign" name="author" />
         <!-- App favicon -->
-        <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
+        <link rel="shortcut icon" href="{{ asset('assets/images/sg-vector.svg') }}">
 
         <!-- Bootstrap Css -->
         <link href="{{ asset('assets/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
@@ -33,7 +33,7 @@
     <div class="col-lg-6 auth-left" style="background: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;">
         <div class="auth-left-content">
             <div class="d-flex justify-content-between align-items-center">
-                <div class="brand">NMU</div>
+                <div class="brand">Story Golpo</div>
             </div>
 
             <h4>Capturing Moments,<br>Creating Memories</h4>
@@ -42,9 +42,9 @@
 
     <!-- Right Form -->
     <div class="col-lg-6 auth-right">
-        <h2>Sign in to NMU</h2>
+        <h2>Sign in to Story Golpo</h2>
         <p class="text-muted">
-            Welcome Back to NMU
+            Welcome Back to Story Golpo
         </p>
 
         <form class="mt-4" method="POST" action="{{ route('login') }}">

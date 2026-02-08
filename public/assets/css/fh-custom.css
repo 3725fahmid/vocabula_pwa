@@ -19,6 +19,17 @@ a {
   color: #5c5c5c;
 }
 
+/* 
+Change page-content padding  
+use for batter visibility
+*/
+@media (max-width: 991px) {
+  .page-content {
+    padding: 100px 0 50px 0;
+  }
+}
+
+
 .pagination {
   align-items: center;
   justify-content: center;

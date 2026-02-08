@@ -7,10 +7,10 @@
             <div class="mx-3 px-3">
                 <a href="{{ route('home') }}" class="logo logo-light">
                     {{-- <span class="logo-sm">
-                        <img src="{{ asset('assets/images/logo-light-sm.svg') }}" alt="logo-sm-light" height="22">
+                        <img src="{{ asset('assets/images/sobdogolpo.svg') }}" alt="logo-sm-light" height="22">
                     </span> --}}
                     <span class="logo">
-                        <img src="{{ asset('assets/images/logo-light.svg') }}" alt="logo-light" height="20">
+                        <img src="{{ asset('assets/images/sobdogolpo.svg') }}" alt="logo-light" height="20">
                     </span>
                 </a>
             </div>
