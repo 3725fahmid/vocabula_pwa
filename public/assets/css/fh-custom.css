@@ -25,7 +25,7 @@ use for batter visibility
 */
 @media (max-width: 991px) {
   .page-content {
-    padding: 100px 0 50px 0;
+    padding: 100px 0 50px 0 !important;
   }
 }
 
