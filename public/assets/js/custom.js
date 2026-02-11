@@ -69,24 +69,26 @@ function downloadSingleCard(btn) {
     // 🔹 Clone the card
     const clone = card.cloneNode(true);
 
+    // 🔹 Position off-screen for canvas
     clone.style.position = "absolute";
     clone.style.left = "-9999px";
     clone.style.top = "0";
     clone.style.margin = "0";
-    clone.style.background = "#ffffff";
-    clone.style.h4 = "1.35rem";
-    clone.style.h2 = "1.8rem";
 
-    // ✅ Mobile-like aspect ratio (portrait)
-    clone.style.aspectRatio = "9 / 16";  // 🔹 change here for mobile flashcard
-    clone.style.width = "400px";          // optional: fixed width for mobile
-    clone.style.height = "350px";          // height adjusts automatically
+    // 🔹 Premium mobile card styles
+    clone.style.aspectRatio = "9 / 16";         // portrait mobile style
+    clone.style.width = "400px";                // mobile card width
+    clone.style.height = "350px";
+    clone.style.padding = "20px";               // nice padding
+    clone.style.borderRadius = "20px";          // smooth rounded corners
+    clone.style.boxShadow = "0 10px 30px rgba(0,0,0,0.15), 0 4px 10px rgba(0,0,0,0.07)"; // subtle shadow               // dark text for readability
+
 
     document.body.appendChild(clone);
 
     html2canvas(clone, {
         scale: 3, // high resolution
-        backgroundColor: "#ffffff",
+        backgroundColor: null, // keep gradient visible
         useCORS: true
     }).then(canvas => {
         const link = document.createElement("a");
@@ -99,6 +101,7 @@ function downloadSingleCard(btn) {
         btn.disabled = false;
     });
 }
+
 
 
 
