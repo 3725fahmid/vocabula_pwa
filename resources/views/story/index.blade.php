@@ -116,33 +116,34 @@
         <div class="row g-3">
             <div class="col-12">
                 <!-- MODERN WORD LIST -->
-                <!-- GRID WORD LIST -->
-                <div class="card border-0 shadow-sm rounded-4  bg-gradient-words-area">
-                    <div class="card-body p-2">
-                        <a href="#word_list" class="text-dark" data-bs-toggle="collapse"
-                                        aria-expanded="false"
-                                        aria-controls="collapseOne">
-                            <div class="card-header" id="headingOne">
-                                <h6 class="m-0">
-                                    📘 Word List
-                                    <i class="mdi mdi-minus float-end accor-plus-icon"></i>
-                                </h6>
-                            </div>
-                        </a>
+                <div class="card border-0 shadow-sm rounded-4 bg-gradient-words-area">
 
-                        <div id="word_list" class="collapse"
-                                aria-labelledby="headingOne" data-bs-parent="#accordion">
+                    <!-- Header -->
+                    <div class="card-header bg-transparent border-0 p-3">
+                        <button class="btn w-100 custom-collapse-icon text-start fw-bold fs-4 d-flex justify-content-between align-items-center"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#word_list"
+                                aria-expanded="false"
+                                aria-controls="word_list">
+
+                            <span>Word List</span>
+                            <i class="ri ri-add-line d-block"></i>
+                        </button>
+                    </div>
+
+                    <!-- Collapse Content -->
+                    <div id="word_list" class="collapse">
+                        <div class="card-body pt-0">
                             <div class="row">
                                 @foreach($words as $story)
-                                    <div class="col-12 col-md-6 col-lg-4 col-xl-4 mb-3 d-flex">
-
+                                    <div class="col-12 col-md-6 col-lg-4 mb-3 d-flex">
                                         <x-vucabulary-card :item="$story"/>
-
                                     </div>
                                 @endforeach
                             </div>
                         </div>
-                    </div>   
+                    </div>
+
                 </div>
             </div>
             <!-- Vocabulary carousel Section -->

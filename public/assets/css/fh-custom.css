@@ -418,3 +418,12 @@ path {
   custom design end
 
 */
+
+
+.rotate-icon {
+  transition: transform 0.3s ease;
+}
+
+button[aria-expanded="true"] .rotate-icon {
+  transform: rotate(180deg);
+}
