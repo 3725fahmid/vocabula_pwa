@@ -1,4 +1,4 @@
-  <header id="page-topbar" class="mx-2 my-0 rounded-pill shadow-lg">
+  <header id="page-topbar" class="mx-2 mt-1 mt-md-0 rounded-pill shadow-lg">
     <div class="navbar-header d-flex justify-between">
 
         <div class="d-flex">
