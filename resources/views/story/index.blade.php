@@ -134,17 +134,23 @@
                     <!-- Collapse Content -->
                     <div id="word_list" class="collapse">
                         <div class="card-body pt-0">
-                            <div class="row">
-                                @foreach($words as $story)
-                                    <div class="col-12 col-md-6 col-lg-4 mb-3 d-flex">
-                                        <x-vucabulary-card :item="$story"/>
-                                    </div>
-                                @endforeach
+
+                            <!-- Bootstrap scroll container -->
+                            <div class="overflow-auto pe-2" style="max-height: 420px;">
+                                <div class="row g-3">
+                                    @foreach($words as $story)
+                                        <div class="col-12 col-md-6 col-lg-4 mb-3 d-flex">
+                                            <x-vucabulary-card :item="$story"/>
+                                        </div>
+                                    @endforeach
+                                </div>
                             </div>
+
                         </div>
                     </div>
 
                 </div>
+
             </div>
             <!-- Vocabulary carousel Section -->
             <div class="col-12">
