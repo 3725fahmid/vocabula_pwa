@@ -29,42 +29,65 @@
             <!-- Home Page Btn -->
             <div class="mx-lg-3 mx-1 mt-2 px-lg-3 px-1">
                 <div class="dropdown d-lg-inline-block ms-1">
-                    <a href="{{route('home')}}" class="waves-effect">
-                        <button type="button" class="btn header-item noti-icon waves-effect d-flex flex-column align-items-center">
-                            <i class="{{ Route::is('home') ? 'ri-home-4-fill' : 'ri-home-4-line' }}"></i>
-                            <span class="small">
-                                Home
-                            </span>
+                       <a href="{{ route('home') }}"
+                            class="nav-link d-flex flex-column align-items-center
+                        {{ Route::is('home') ? 'active text-primary fw-bold' : 'text-body' }}">
+
+                            <i class="ri-home-4-{{ Route::is('home') ? 'fill' : 'line' }} fs-4"></i>
+                            <span class="small">Home</span>
+                        </a>
+                    {{-- <a href="{{route('home')}}" class="waves-effect">
+                        <button type="button"
+                            class="btn header-item noti-icon waves-effect d-flex flex-column align-items-center
+                            {{ Route::is('home') ? 'text-primary active' : 'text-body' }}">
+
+                            <i class="ri-home-4-{{ Route::is('home') ? 'fill' : 'line' }}"></i>
+
+                            <span class="small">Home</span>
                         </button>
-                    </a>
+                    </a> --}}
                 </div>
             </div>
 
             <!-- Quize Page Btn -->
             <div class="mx-lg-3 mx-1 mt-2 px-lg-3 px-1">
                 <div class="dropdown d-lg-inline-block ms-1">
-                    <a href="{{ url('quiz') }}" class="waves-effect">
+                    <a href="{{ url('quiz') }}"
+                            class="nav-link d-flex flex-column align-items-center
+                        {{ request()->is('quiz') ? 'active text-primary fw-bold' : 'text-body' }}">
+
+                            <i class="ri-keyboard-box-{{ request()->is('quiz') ? 'fill' : 'line' }} fs-4"></i>
+                            <span class="small">Quiz</span>
+                        </a>
+                    {{-- <a href="{{ url('quiz') }}" class="waves-effect">
                         <button type="button" class="btn header-item noti-icon waves-effect d-flex flex-column align-items-center">
-                            <i class="{{ request()->is('quiz') ? 'ri-keyboard-box-fill' : 'ri-keyboard-box-line' }}"></i>
+                            <i class="{{ request()->is('quiz') ? 'ri-keyboard-box-fill color-primary' : 'ri-keyboard-box-line' }}"></i>
                             <span class="small">
                                 Quiz
                             </span>
                         </button>
-                    </a>
+                    </a> --}}
                 </div>
             </div>
 
             <!-- Report Page Btn-->
             <div class="mx-lg-3 mx-1 mt-2 px-lg-3 px-1">
                 <div class="dropdown d-lg-inline-block ms-1">
-                    <a href="#" class="waves-effect">
+                    <a href="#"
+                            class="nav-link d-flex flex-column align-items-center
+                        {{ request()->is('#') ? 'active text-primary fw-bold' : 'text-body' }}">
+
+                            <i class="ri-bar-chart-box-{{ request()->is('#') ? 'fill' : 'line' }} fs-4"></i>
+                            <span class="small">Report</span>
+                        </a>
+                    {{-- <a href="#" class="waves-effect">
                         <button type="button" class="btn header-item noti-icon waves-effect d-flex flex-column align-items-center">
-                            <i class="{{ request()->is('#') ? 'ri-bar-chart-box-fill' : 'ri-bar-chart-box-line' }}"></i>
+                            <i class="{{ request()->is('#') ? 'ri-bar-chart-box-fill color-primary' : 'ri-bar-chart-box-line' }}"></i>
                             <span class="small">
                                 Report
                             </span>
                         </button>
-                    </a>
+                    </a> --}}
                 </div>
             </div>
         </div>
