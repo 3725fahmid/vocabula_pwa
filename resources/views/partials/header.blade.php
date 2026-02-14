@@ -31,10 +31,14 @@
                 <div class="dropdown d-lg-inline-block ms-1">
                        <a href="{{ route('home') }}"
                             class="nav-link d-flex flex-column align-items-center
-                        {{ Route::is('home') ? 'active text-primary fw-bold' : 'text-body' }}">
+                            {{ Route::is('home') ? 'active text-primary fw-bold' : 'text-body text-white' }}"
 
-                            <i class="ri-home-4-{{ Route::is('home') ? 'fill' : 'line text-light' }} fs-3"></i>
-                            <span class="small">Home</span>
+                            data-bs-toggle="tooltip"
+                            data-bs-placement="bottom"
+                            title="Home">
+
+                            <i class="ri-home-4-{{ Route::is('home') ? 'fill' : 'line text-white' }} fs-3"></i>
+                            <span class="small ">Home</span>
                         </a>
                     {{-- <a href="{{route('home')}}" class="waves-effect">
                         <button type="button"
@@ -54,9 +58,12 @@
                 <div class="dropdown d-lg-inline-block ms-1">
                     <a href="{{ url('quiz') }}"
                             class="nav-link d-flex flex-column align-items-center
-                        {{ request()->is('quiz') ? 'active text-primary fw-bold' : 'text-body' }}">
+                            {{ request()->is('quiz') ? 'active text-primary fw-bold' : 'text-body text-white' }}"
+                            data-bs-toggle="tooltip"
+                            data-bs-placement="bottom"
+                            title="Quiz">
 
-                            <i class="ri-keyboard-box-{{ request()->is('quiz') ? 'fill' : 'line text-light' }} fs-3"></i>
+                            <i class="ri-keyboard-box-{{ request()->is('quiz') ? 'fill' : 'line text-white' }} fs-3"></i>
                             <span class="small">Quiz</span>
                         </a>
                     {{-- <a href="{{ url('quiz') }}" class="waves-effect">
@@ -75,9 +82,12 @@
                 <div class="dropdown d-lg-inline-block ms-1">
                     <a href="#"
                             class="nav-link d-flex flex-column align-items-center
-                        {{ request()->is('#') ? 'active text-primary fw-bold' : 'text-body' }}">
+                            {{ request()->is('#') ? 'active text-primary fw-bold' : 'text-body text-white' }}"
+                             data-bs-toggle="tooltip"
+                             data-bs-placement="bottom"
+                             title="Report">
 
-                            <i class="ri-bar-chart-box-{{ request()->is('#') ? 'fill' : 'line text-light' }} fs-3"></i>
+                            <i class="ri-bar-chart-box-{{ request()->is('#') ? 'fill' : 'line text-white' }} fs-3"></i>
                             <span class="small">Report</span>
                         </a>
                     {{-- <a href="#" class="waves-effect">

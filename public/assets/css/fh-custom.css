@@ -19,6 +19,14 @@ a {
   color: #5c5c5c;
 }
 
+.story-content p {
+  font-size: 22px;
+  font-weight: 900;
+  line-height: 30px;
+  /* font-family:  */
+  /* text-align: justify; */
+}
+
 /* 
 Change page-content padding  
 use for batter visibility
@@ -26,6 +34,11 @@ use for batter visibility
 @media (max-width: 991px) {
   .page-content {
     padding: 100px 0 50px 0 !important;
+  }
+
+  .story-content p {
+    font-size: 15px;
+    font-weight: 700;
   }
 }
 
@@ -36,13 +49,7 @@ use for batter visibility
 }
 
 
-.story-content p {
-  font-size: 22px;
-  font-weight: 900;
-  line-height: 30px;
-  /* font-family:  */
-  /* text-align: justify; */
-}
+
 
 
 
@@ -420,6 +427,9 @@ path {
 */
 
 
+
+/* word list plus minus button design start */
+
 .rotate-icon {
   transition: transform 0.3s ease;
 }
@@ -427,3 +437,5 @@ path {
 button[aria-expanded="true"] .rotate-icon {
   transform: rotate(180deg);
 }
+
+/* word list plus minus button design end */
