@@ -33,7 +33,7 @@
                             class="nav-link d-flex flex-column align-items-center
                         {{ Route::is('home') ? 'active text-primary fw-bold' : 'text-body' }}">
 
-                            <i class="ri-home-4-{{ Route::is('home') ? 'fill' : 'line' }} fs-4"></i>
+                            <i class="ri-home-4-{{ Route::is('home') ? 'fill' : 'line text-light' }} fs-3"></i>
                             <span class="small">Home</span>
                         </a>
                     {{-- <a href="{{route('home')}}" class="waves-effect">
@@ -56,7 +56,7 @@
                             class="nav-link d-flex flex-column align-items-center
                         {{ request()->is('quiz') ? 'active text-primary fw-bold' : 'text-body' }}">
 
-                            <i class="ri-keyboard-box-{{ request()->is('quiz') ? 'fill' : 'line' }} fs-4"></i>
+                            <i class="ri-keyboard-box-{{ request()->is('quiz') ? 'fill' : 'line text-light' }} fs-3"></i>
                             <span class="small">Quiz</span>
                         </a>
                     {{-- <a href="{{ url('quiz') }}" class="waves-effect">
@@ -77,7 +77,7 @@
                             class="nav-link d-flex flex-column align-items-center
                         {{ request()->is('#') ? 'active text-primary fw-bold' : 'text-body' }}">
 
-                            <i class="ri-bar-chart-box-{{ request()->is('#') ? 'fill' : 'line' }} fs-4"></i>
+                            <i class="ri-bar-chart-box-{{ request()->is('#') ? 'fill' : 'line text-light' }} fs-3"></i>
                             <span class="small">Report</span>
                         </a>
                     {{-- <a href="#" class="waves-effect">
