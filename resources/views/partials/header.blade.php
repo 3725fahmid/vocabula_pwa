@@ -3,6 +3,11 @@
 
         <div class="d-flex">
 
+            <button type="button"
+                class="btn btn-sm px-3 font-size-24 header-item waves-effect {{ Route::is('home') ? 'd-inline' : 'd-none' }}"
+                id="vertical-menu-btn">
+                <i class="ri-menu-2-line align-middle"></i>
+            </button>
             <!-- LOGO -->
             <div class="mx-3 px-3">
                 <a href="{{ route('home') }}" class="logo logo-light">
@@ -14,6 +19,7 @@
                     </span>
                 </a>
             </div>
+
 
             <!-- App Search-->
             {{-- <form class="app-search d-none d-lg-block">

@@ -5,13 +5,15 @@
         <!-- Home Page Btn -->
         <div class="mx-lg-3 mx-1 mt-2 px-lg-3 px-1">
             <div class="dropdown d-lg-inline-block ms-1">
-                <a href="{{route('home')}}" class="waves-effect">
-                    <button type="button" class="btn header-item noti-icon waves-effect d-flex flex-column align-items-center">
-                        <i class="{{ Route::is('home') ? 'ri-home-4-fill' : 'ri-home-4-line' }}"></i>
-                        <span class="small">
-                            Home
-                        </span>
-                    </button>
+                <a href="{{ route('home') }}"
+                    class="nav-link d-flex flex-column align-items-center
+                    {{ Route::is('home') ? 'active text-primary fw-bold' : 'text-body text-white' }}"
+
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="bottom"
+                    title="Home">
+
+                    <i class="ri-home-4-{{ Route::is('home') ? 'fill' : 'line text-white' }} fs-3"></i>
                 </a>
             </div>
         </div>
@@ -19,13 +21,14 @@
         <!-- Quize Page Btn -->
         <div class="mx-lg-3 mx-1 mt-2 px-lg-3 px-1">
             <div class="dropdown d-lg-inline-block ms-1">
-                <a href="{{url('quiz')}}" class="waves-effect">
-                    <button type="button" class="btn header-item noti-icon waves-effect d-flex flex-column align-items-center">
-                        <i class="{{ request()->is('quiz') ? 'ri-keyboard-box-fill' : 'ri-keyboard-box-line' }}"></i>
-                        <span class="small">
-                            Quize
-                        </span>
-                    </button>
+                <a href="{{ url('quiz') }}"
+                    class="nav-link d-flex flex-column align-items-center
+                    {{ request()->is('quiz') ? 'active text-primary fw-bold' : 'text-body text-white' }}"
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="bottom"
+                    title="Quiz">
+
+                    <i class="ri-keyboard-box-{{ request()->is('quiz') ? 'fill' : 'line text-white' }} fs-3"></i>
                 </a>
             </div>
         </div>
@@ -33,13 +36,14 @@
         <!-- Report Page Btn-->
         <div class="mx-lg-3 mx-1 mt-2 px-lg-3 px-1">
             <div class="dropdown d-lg-inline-block ms-1">
-                <a href="#" class="waves-effect">
-                    <button type="button" class="btn header-item noti-icon waves-effect d-flex flex-column align-items-center">
-                        <i class="{{ request()->is('#') ? 'ri-bar-chart-box-fill' : 'ri-bar-chart-box-line' }}"></i>
-                        <span class="small">
-                            Report
-                        </span>
-                    </button>
+                <a href="#"
+                    class="nav-link d-flex flex-column align-items-center
+                    {{ request()->is('#') ? 'active text-primary fw-bold' : 'text-body text-white' }}"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="bottom"
+                        title="Report">
+
+                    <i class="ri-bar-chart-box-{{ request()->is('#') ? 'fill' : 'line text-white' }} fs-3"></i>
                 </a>
             </div>
         </div>
@@ -51,7 +55,7 @@
         @endphp
 
         <div class="dropdown d-inline-block user-dropdown">
-            <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
+            <button type="button" class="btn header-item waves-effect mt-2" id="page-header-user-dropdown"
                 data-bs-toggle="offcanvas"
                 data-bs-target="#userBottomDrawer"
                 aria-controls="userBottomDrawer">

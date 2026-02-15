@@ -27,13 +27,40 @@ a {
   /* text-align: justify; */
 }
 
+/* for home page custom vartical menu  */
+.vertical-menu {
+  border-radius: 30px;
+  margin-left: 25px;
+}
+
+.vertical-collpsed .vertical-menu {
+  display: none;
+}
+
 /* 
 Change page-content padding  
 use for batter visibility
 */
-@media (max-width: 991px) {
+
+@media (max-width: 1400px) {
+  .sidebar-enable.vertical-collpsed {
+    display: ;
+  }
+}
+
+@media (max-width: 992px) {
+  .navbar-header {
+    height: 40px !important;
+  }
+
+  .vertical-menu {
+    top: 50px !important;
+    border-radius: 10px;
+    margin-left: 0px;
+  }
+
   .page-content {
-    padding: 100px 0 50px 0 !important;
+    padding: 50px 0 !important;
   }
 
   .story-content p {
@@ -125,18 +152,19 @@ use for batter visibility
 
 /* Custom Mobile Footer Bar Start */
 
-@media (max-width: 765px) {
+@media (max-width: 768px) {
 
   #footer-bar {
     position: fixed;
-    bottom: 0;
+    bottom: 5px;
     right: 0;
     left: 0;
     z-index: 1002;
-    background-color: #272d3e;
+    background-color: #272d3ef0;
     -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, .08);
     box-shadow: 0 2px 4px rgba(0, 0, 0, .08);
-    height: 75px;
+    height: 50px;
+    border-radius: 50px;
   }
 }
 

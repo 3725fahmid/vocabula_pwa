@@ -60,7 +60,7 @@
           @include('partials.header')
 
             <!-- ========== Left Sidebar Start ========== -->
-           {{-- @include('partials.sidebar') --}}
+           @yield('left_side_bar')
             <!-- Left Sidebar End -->
 
 

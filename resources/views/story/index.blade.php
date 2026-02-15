@@ -7,6 +7,8 @@
 <link rel="stylesheet" href="{{ asset('assets/libs/owlcarousel/owl.theme.default.min.css') }}">
 @endsection
 
+
+
 @section('admin')
 
 <div class="page-content">
